@@ -1,0 +1,35 @@
+{
+  "name": "play",
+  "version": "1.0.0",
+  "description": "play.abcdea.com site code",
+  "main": "index.js",
+  "scripts": {
+    "start": "webpack && node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://git.coding.net/wolyshaw/play.git"
+  },
+  "author": "wolyshaw",
+  "license": "BSD",
+  "dependencies": {
+    "classnames": "^2.2.5",
+    "compression": "^1.6.1",
+    "express": "^4.13.4",
+    "react": "^15.3.0",
+    "react-dom": "^15.3.0",
+    "react-router": "^2.6.1"
+  },
+  "devDependencies": {
+    "babel-core": "^6.5.1",
+    "babel-loader": "^6.2.2",
+    "babel-preset-es2015": "^6.5.0",
+    "babel-preset-react": "^6.5.0",
+    "css-loader": "^0.23.1",
+    "http-server": "^0.8.5",
+    "webpack": "^1.12.13",
+    "webpack-dev-middleware": "^1.6.1",
+    "webpack-dev-server": "^1.14.1",
+    "webpack-hot-middleware": "^2.12.2"
+  }
+}

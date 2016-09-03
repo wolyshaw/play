@@ -1,0 +1,26 @@
+html, body {
+  font-size: 65%;
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+.clearfix {
+  zoom: 1;
+}
+.clearfix:after {
+  content: '';
+  display: block;
+  clear: both;
+  width: 0;
+  height: 0;
+}
+
+/* headerNav */
+
+.navWarp {
+  color: rgba(0, 0, 0, 0.7);
+}
+.navWarp li {
+  float: left;
+  list-style: none;
+}
