@@ -9,6 +9,7 @@ import headerNav from './src/modules/siteHeader/headerNav'
 render((
   <Router history={browserHistory}>
     <Route path="/" component={headerNav}>
+      <IndexRoute component={home}/>
       <Route path="/page" component={page}/>
       <Route path="/post" component={post}/>
     </Route>

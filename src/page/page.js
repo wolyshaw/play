@@ -1,10 +1,13 @@
-import React from 'react'
+import React, {Component} from 'react'
 import {Link} from 'react-router'
 
-export default React.createClass({
-  test: function() {
+export default class page extends Component{
+  constructor(props) {
+    super(props)
+  }
+  test() {
     console.log(this)
-  },
+  }
   render() {
     return (
       <div>
@@ -13,4 +16,4 @@ export default React.createClass({
       </div>
     )
   }
-})
+}

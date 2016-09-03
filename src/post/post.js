@@ -1,9 +1,12 @@
-import React from 'react'
+import React, {Component} from 'react'
 
-export default React.createClass({
+export default class post extends Component{
+  constructor(props) {
+    super(props)
+  }
   render() {
     return (
       <div>{ this.props.children }</div>
     )
   }
-})
+}

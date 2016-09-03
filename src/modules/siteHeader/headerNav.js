@@ -1,12 +1,15 @@
-import React from 'react'
+import React, {Component} from 'react'
 import {Link} from 'react-router'
 
-export default React.createClass({
+export default class headerNav extends Component{
+  constructor(props) {
+    super(props)
+  }
   render() {
     return (
       <div>
-        <header>
-          <ul className="navWarp clearfix">
+        <header className="p-header">
+          <ul className="p-nav-warp clearfix">
             <li>
               <Link to="/">主页</Link>
             </li>
@@ -22,4 +25,4 @@ export default React.createClass({
       </div>
     )
   }
-})
+}

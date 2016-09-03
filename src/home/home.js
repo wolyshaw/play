@@ -1,14 +1,17 @@
-import React from 'react'
-import { Link } from 'react-router'
-import headerNav from '../modules/siteHeader/headerNav'
+import React, {Component} from 'react'
+import {Link} from 'react-router'
+import homePostList from '../modules/homePostList'
 
-export default React.createClass({
+export default class home extends Component{
+  constructor(props) {
+    super(props)
+  }
   render() {
     return (
       <div>
-        <Link to="/page">to page</Link>
-        { this.props.children }
+        <Link to="/page"><homePostList/></Link>
+        {this.props.children}
       </div>
     )
   }
-})
+}

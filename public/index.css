@@ -4,6 +4,14 @@ html, body {
   padding: 0;
   margin: 0;
 }
+a {
+  color: rgba(0, 0, 0, .85);
+  text-decoration: none;
+  transition: color .3s ease-in-out;
+}
+a:hover {
+  color: rgba(0, 0, 0, .65);
+}
 .clearfix {
   zoom: 1;
 }
@@ -17,10 +25,25 @@ html, body {
 
 /* headerNav */
 
-.navWarp {
-  color: rgba(0, 0, 0, 0.7);
+.p-header {
+  height: 60px;
+  line-height: 60px;
 }
-.navWarp li {
+.p-nav-warp {
+  font-size: 1.4rem;
+}
+.p-nav-warp li {
   float: left;
   list-style: none;
+  transition: all .3s ease-in-out;
+}
+.p-nav-warp li:hover {
+  background-color: rgba(0, 0, 0, .05);
+}
+.p-nav-warp li a {
+  display: block;
+  width: 80px;
+  text-align: center;
+  height: 100%;
+  border-radius: 2px;
 }
