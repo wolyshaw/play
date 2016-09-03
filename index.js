@@ -13,4 +13,4 @@ render((
       <Route path="/post" component={post}/>
     </Route>
   </Router>
-), document.getElementById('test'))
+), document.getElementById('app'))
