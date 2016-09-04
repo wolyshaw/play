@@ -1,6 +1,15 @@
+export function objToStr(obj){
+  var strArr = []
+  for (var key in obj) {
+    if (obj.hasOwnProperty(key)) {
+      strArr.push(key + '=' + obj[key])
+    }
+  }
+  return strArr.join('&')
+}
 export function ajax(set) {
   var url = set.url,
-    data = set.data === undefined ? null : set.data,
+    data = set.data === undefined ? null : objToStr(set.data),
     type = set.type || 'get',
     success = set.success,
     complete = set.complete,
