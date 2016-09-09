@@ -7,7 +7,10 @@ export default class post extends Component{
   }
   render() {
     return (
-      <div>{ this.props.children }</div>
+      <div>
+        <h1>dsgdfhgf</h1>
+        { this.props.children }
+      </div>
     )
   }
 }

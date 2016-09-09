@@ -1,9 +1,8 @@
 import React, {Component} from 'react'
 import {render} from 'react-dom'
 import {Link} from 'react-router'
-import homePostList from '../modules/homePostList'
+import HomePostList from '../modules/homePostList'
 import {objToStr, ajax} from '../util/util'
-import headerNav from '../modules/siteHeader/headerNav'
 
 export default class home extends Component {
   constructor(props) {
@@ -26,8 +25,8 @@ export default class home extends Component {
     return (
       <div>
         <Link to="/page">to page</Link>
-        <div onClick={this.getData}>dfhdfhfgjghjgtyiuyoiupi</div>
-        <homePostList/>
+        <div onClick={() => {console.log(HomePostList)}}>dfhdfhfgjghjgtyiuyoiupi</div>
+        <HomePostList/>
         {this.props.children}
       </div>
     )
