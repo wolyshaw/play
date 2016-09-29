@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {render} from 'react-dom'
 import {Link} from 'react-router'
-import HomePostList from '../modules/homePostList'
+import HomePostList from './homePostList'
 import {objToStr, ajax} from '../util/util'
 
 export default class home extends Component {
