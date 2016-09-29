@@ -1,0 +1,122 @@
+html, body {
+  font-size: 65%;
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+a {
+  color: rgba(0, 0, 0, .85);
+  text-decoration: none;
+  transition: color .3s ease-in-out;
+}
+a:hover {
+  color: rgba(0, 0, 0, .65);
+}
+.clearfix {
+  zoom: 1;
+}
+.clearfix:after {
+  content: '';
+  display: block;
+  clear: both;
+  width: 0;
+  height: 0;
+}
+
+/* headerNav */
+
+.p-header {
+  height: 60px;
+  line-height: 60px;
+}
+.p-nav-warp {
+  font-size: 1.4rem;
+}
+.p-nav-warp li {
+  float: left;
+  list-style: none;
+  transition: all .3s ease-in-out;
+}
+.p-nav-warp li:hover {
+  background-color: rgba(0, 0, 0, .05);
+}
+.p-nav-warp li a {
+  display: block;
+  width: 80px;
+  text-align: center;
+  height: 100%;
+  border-radius: 2px;
+}
+.w-inp-outline{
+  outline: none;
+}
+.w-btn{
+  padding: 10px 15px;
+  margin: 0;
+  background-color: rgb(65, 198, 163);
+  border: none;
+  color: #fff;
+  border-radius: 5px;
+  display: block;
+  cursor: pointer;
+  transition: background-color ease .3s;
+}
+.w-btn:hover{
+  background-color: rgba(65, 198, 163, .8);
+}
+.w-loading-warp{
+  background-color: rgba(255, 255, 255, 0.5);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  opacity: 0;
+  visibility: hidden;
+  transition: all .2s linear;
+}
+@keyframes changeHeight{
+  0% {
+    height: 100%;
+  }
+  25% {
+    height: 70%;
+  }
+  50% {
+    height: 40%;
+  }
+  75% {
+    height: 70%;
+  }
+  100% {
+    height: 100%;
+  }
+}
+.w-loading{
+  width: 120px;
+  height: 60px;
+  margin: auto;
+  display: flex;
+}
+.w-loading > span{
+  display: inline-block;
+  width: 30px;
+  margin: auto;
+  height: 100%;
+  border-radius: 2px;
+  background-color: rgb(206, 206, 206);
+}
+.w-loading > .w-loading-f{
+  animation: changeHeight 1.2s 0s infinite linear;
+}
+.w-loading > .w-loading-s{
+  animation: changeHeight 1.2s .4s infinite linear;
+}
+.w-loading > .w-loading-t{
+  animation: changeHeight 1.2s .8s infinite linear;
+}
+.w-loading-show{
+  visibility: visible;
+  opacity: 1;
+}

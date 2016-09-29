@@ -9,23 +9,9 @@ export default class home extends Component {
     super(props)
   }
 
-  getData() {
-    ajax({
-      url: 'https://api.github.com/repos/vmg/redcarpet/issues',
-      data: {
-        state: 'closed'
-      },
-      success: r => {
-        console.log(r)
-      }
-    })
-  }
-
   render() {
     return (
       <div>
-        <Link to="/page">to page</Link>
-        <div onClick={() => {console.log(HomePostList)}}>dfhdfhfgjghjgtyiuyoiupi</div>
         <HomePostList/>
         {this.props.children}
       </div>
