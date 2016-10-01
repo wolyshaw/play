@@ -4,8 +4,7 @@ import {Router, Route, IndexRoute, browserHistory} from 'react-router'
 import home from './src/home/home'
 import page from './src/page/page'
 import post from './src/post/post'
-import post from './src/post/post'
-import headerNav from './src/modules/siteHeader/headerNav'
+import headerNav from './src/common/siteHeader/headerNav'
 
 render((
   <Router history={browserHistory}>
