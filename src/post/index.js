@@ -16,7 +16,7 @@ export default class post extends Component{
     ajax({
       url: '/',
       data: {
-        p: this.props.routeParams.id
+        p: this.props.routeParams.id,
         json: '1'
       },
       success: (r) => {
