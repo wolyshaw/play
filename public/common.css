@@ -4,6 +4,8 @@ html, body {
   padding: 0;
   margin: 0;
   -webkit-font-smoothing: antialiased;
+  font-family: PingFang SC,Hiragino Sans GB,Microsoft YaHei,STHeiti,WenQuanYi Micro Hei,Helvetica,Arial,sans-serif;
+  line-height: 1.6;
 }
 a {
   color: rgba(0, 0, 0, .85);
@@ -33,6 +35,7 @@ ul{
 .p-header {
   height: 60px;
   line-height: 60px;
+  border-bottom: 1px solid rgba(0, 0, 0, .1);
 }
 .p-nav-warp {
   font-size: 1.4rem;
@@ -69,6 +72,10 @@ ul{
 .w-btn:hover{
   background-color: rgba(65, 198, 163, .8);
 }
+/**
+ * common loading style
+ */
+
 .w-loading-warp{
   background-color: rgba(255, 255, 255, 0.5);
   position: fixed;
@@ -124,4 +131,30 @@ ul{
 .w-loading-show{
   visibility: visible;
   opacity: 1;
+}
+/**
+ * post list style
+ */
+.post-list{
+  width: 1112px;
+  margin: auto;
+}
+.post-list .post-item{
+  width: 760px;
+  margin-right: 12px;
+}
+/**
+ * home-post style
+ */
+.home-post-list{
+
+}
+/**
+ * post-item style
+ */
+.post-item{
+  width: 100%;
+}
+.post-item h3{
+  font-size: 1.6rem;
 }

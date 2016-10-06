@@ -15,7 +15,7 @@ export function showLoading(show){
   }
 }
 export function ajax(set) {
-  var url = 'http://localhost/wordpress' + set.url,
+  var url = 'http://local.abcdea.net' + set.url,
     data = set.data === undefined ? null : objToStr(set.data),
     type = set.type || 'get',
     success = set.success,

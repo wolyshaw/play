@@ -7,7 +7,9 @@ export default class post extends Component{
   constructor(props) {
     super(props)
     this.state = {
-      item: {}
+      item: {
+        post: {}
+      }
     }
   }
   componentWillMount(){
@@ -18,17 +20,19 @@ export default class post extends Component{
       },
       success: (r) => {
         this.setState({
-          item: r.post
+          item: r
         })
       }
     })
   }
   render() {
-    let post = this.state
+    let data = this.state.item
     return (
-      <div>
-        <h3>{post.item.title}</h3>
-      </div>
+      <article>
+        <h3>{data.post.title}</h3>
+        <date>{data.post.date}</date>
+        <div className="post-content" dangerouslySetInnerHTML={{__html: data.post.content}}></div>
+      </article>
     )
   }
 }

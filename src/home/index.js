@@ -11,8 +11,8 @@ export default class home extends Component {
 
   render() {
     return (
-      <div>
-        <HomePostList/>
+      <div className="post-list home-post-list">
+        <HomePostList url='/' />
         {this.props.children}
       </div>
     )
