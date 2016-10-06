@@ -14,8 +14,9 @@ export default class post extends Component{
   }
   componentWillMount(){
     ajax({
-      url: this.props.location.pathname,
+      url: '/',
       data: {
+        p: this.props.routeParams.id
         json: '1'
       },
       success: (r) => {
