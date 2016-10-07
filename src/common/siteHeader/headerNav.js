@@ -1,5 +1,24 @@
 import React, {Component} from 'react'
 import {Link} from 'react-router'
+import config from '../../../config'
+
+class NavList extends Component{
+  render(){
+    return (
+      <ul className="p-nav-warp clearfix">
+        {
+          config.navs.map((nav, eq) => {
+            return (
+              <li key={eq}>
+                <Link to={nav.path}>{nav.title}</Link>
+              </li>
+            )
+          })
+        }
+    </ul>
+    )
+  }
+}
 
 export default class headerNav extends Component{
   constructor(props) {
@@ -9,17 +28,7 @@ export default class headerNav extends Component{
     return (
       <div>
         <header className="p-header">
-          <ul className="p-nav-warp clearfix">
-            <li>
-              <Link to="/">主页</Link>
-            </li>
-            <li>
-              <Link to="/page">页面</Link>
-            </li>
-            <li>
-              <Link to="/post">文章</Link>
-            </li>
-          </ul>
+          <NavList/>
         </header>
         {this.props.children}
       </div>
