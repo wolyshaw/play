@@ -4,7 +4,8 @@
   "description": "play.abcdea.com site code",
   "main": "index.js",
   "scripts": {
-    "start": "webpack && node server.js"
+    "dev": "webpack --colors --config ./webpack.config.dev.js && node server.js",
+    "start": "webpack --colors --config ./webpack.config.js"
   },
   "repository": {
     "type": "git",
