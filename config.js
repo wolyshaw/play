@@ -3,10 +3,12 @@ export default {
   apiHost: 'http://demo.abcdea.net/api',
   navs: [
     {
+      id: 0,
       title: '首页',
       path: '/'
     },
     {
+      id: 1,
       title: '文章',
       path: '/'
     }

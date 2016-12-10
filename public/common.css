@@ -36,24 +36,20 @@ ul{
   height: 60px;
   line-height: 60px;
   border-bottom: 1px solid rgba(0, 0, 0, .1);
+    font-size: 1.4rem;
 }
-.p-nav-warp {
-  font-size: 1.4rem;
-}
-.p-nav-warp li {
-  float: left;
-  list-style: none;
-  transition: all .3s ease-in-out;
-}
-.p-nav-warp li:hover {
+.p-header a:hover {
   background-color: rgba(0, 0, 0, .05);
 }
-.p-nav-warp li a {
+.p-header a {
   display: block;
   width: 80px;
   text-align: center;
   height: 100%;
   border-radius: 2px;
+  float: left;
+  list-style: none;
+  transition: all .3s ease-in-out;
 }
 .w-inp-outline{
   outline: none;

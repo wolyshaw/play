@@ -1,16 +1,20 @@
 import React, {Component} from 'react'
 import { Router, Route, Link } from 'react-router'
 import {showLoading, ajax} from '../util/util'
-import PostList from '../modules/postList'
 
-export default class Home extends Component{
+export default class PostList extends Component{
   constructor(s){
     super(s)
+  }
+  componentWillMount(){
+    ajax({
+      success: r => console.log(r)
+    })
   }
   render(){
     return(
       <div>
-        <PostList/>
+        top Homejlkkl
       </div>
     )
   }
