@@ -7,9 +7,14 @@ export class PostItem extends Component {
     super(s)
   }
   render(){
+    let post = this.props.item
     return(
       <div>
-        '123'
+        <h3>{post.title}</h3>
+        {
+          post.attachments[0] ? <img src={post.attachments[0].url}/> : ''
+        }
+        <div dangerouslySetInnerHTML={{__html: post.excerpt}}></div>
       </div>
     )
   }
