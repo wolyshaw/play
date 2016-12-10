@@ -43,23 +43,9 @@ export class PostItem extends Component {
 export default class PostList extends Component{
   constructor(s){
     super(s)
-    this.state = {
-      postList: {}
-    }
-  }
-  componentWillMount(){
-    ajax({
-      url: this.props.url,
-      data: this.props.ajaxData,
-      success: r => {
-        this.setState({
-          postList: r
-        })
-      }
-    })
   }
   render(){
-    let posts = this.state.postList.posts || []
+    let posts = this.props.postList || []
     return(
       <div className="post-list">
         {
