@@ -8,12 +8,16 @@ export class PostItem extends Component {
   }
   render(){
     let post = this.props.item
+    let postItemImageStyle = {
+      backgroundImage: 'url( '+ (post.attachments[0] ? post.attachments[0].url : "") + ')'
+    }
     return(
-      <div>
-        <h3>{post.title}</h3>
+      <div className="post-item">
         {
-          post.attachments[0] ? <img src={post.attachments[0].url}/> : ''
+          post.attachments[0] ? <Link to={'/post/' + post.id}><span className="image" style={postItemImageStyle}></span></Link> : ''
         }
+        <h3><Link to={'/post/' + post.id}>{post.title}</Link></h3>
+        <div><Link to={post.author.url ? post.author.url : '/author/' + post.author.nickname}>{post.author.nickname}</Link></div>
         <div dangerouslySetInnerHTML={{__html: post.excerpt}}></div>
       </div>
     )
@@ -39,7 +43,7 @@ export default class PostList extends Component{
   render(){
     let posts = this.state.postList.posts || []
     return(
-      <div>
+      <div className="post-list">
         {
           posts.map(item => <PostItem key={item.id} item={item}/>)
         }
