@@ -1,3 +1,4 @@
+import config from '../../config'
 export function objToStr(obj){
   var strArr = []
   for (var key in obj) {
@@ -15,7 +16,7 @@ export function showLoading(show){
   }
 }
 export function ajax(set) {
-  var url = 'http://demo.abcdea.net/api' + set.url,
+  var url = config.apiHost + set.url,
     data = set.data === undefined ? null : objToStr(set.data),
     type = set.type || 'get',
     success = set.success,
