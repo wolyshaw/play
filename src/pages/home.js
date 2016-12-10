@@ -13,9 +13,6 @@ export default class Home extends Component{
   }
   componentWillMount(){
     ajax({
-      data: {
-        cat: this.props.params.id
-      },
       success: r => {
         this.setState({
           postList: r

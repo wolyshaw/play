@@ -7,7 +7,7 @@ export class CategorieInfo extends Component{
   render(){
     let info = this.props.info
     return(
-      <div className="categorie-info">
+      <div className="categorie-info top-info">
         <div>
           <div>
             <h3>{info.title}</h3>
