@@ -42,9 +42,11 @@ export function ajax(set) {
   showLoading(true)
   xhr.onreadystatechange = () => {
     if (xhr.readyState === 4) {
+      showLoading(false)
       if (xhr.status === 200) {
         success(JSON.parse(xhr.responseText))
-        showLoading(false)
+      }else{
+        console.error(`ajax load error url: ${url}, readyState: ${xhr.readyState}`)
       }
       if (complete) {
         complete(JSON.parse(xhr.responseText))
