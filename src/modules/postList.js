@@ -2,7 +2,6 @@ import React, {Component} from 'react'
 import { Router, Route, Link } from 'react-router'
 import TagList from '../modules/tagList'
 import CategorieList from '../modules/categorieList'
-import {showLoading, ajax} from '../util/util'
 
 export class PostItem extends Component {
   constructor(s) {
