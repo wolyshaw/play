@@ -292,3 +292,43 @@ p{
 .comment-create .w-btn{
   margin-left: 36px;
 }
+
+@media screen and (max-width: 980px){
+  .home .post-list{
+    margin: 0;
+    width: 100%;
+  }
+  .home .post-list .post-item{
+    padding: 20px 0;
+    width: 100%;
+  }
+  .home .post-list .post-item h3{
+    font-size: 1.4rem;
+  }
+    .home .post-list .post-item a{
+      padding: 0;
+    }
+  .home .post-list .post-item > *{
+    padding: 0 10px;
+  }
+  .post-wrap > div.post-content,
+  .post-wrap .post-info > div,
+  .post-wrap .comment-warp{
+    width: 100%;
+    padding: 0 10px;
+  }
+  .post-wrap .post-info{
+    height: 240px;
+  }
+  .post-wrap .post-info > div > h3{
+    font-size: 2.4rem;
+    padding: 40px 0;
+  }
+  .post-wrap > div.post-content *{
+    font-size: 1.4rem;
+    line-height: 1.6;
+  }
+  .comment-create > label > textarea{
+    width: 300px;
+  }
+}
