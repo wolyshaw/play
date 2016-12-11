@@ -289,3 +289,6 @@ p{
   width: 400px;
   height: 80px;
 }
+.comment-create .w-btn{
+  margin-left: 36px;
+}
