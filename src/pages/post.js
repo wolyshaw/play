@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import { Router, Route, Link } from 'react-router'
 import TagList from '../modules/tagList'
 import CategorieList from '../modules/categorieList'
+import Comment from '../modules/comment'
 import {showLoading, ajax} from '../util/util'
 
 export class PostInfo extends Component{
@@ -54,6 +55,7 @@ export default class Post extends Component{
       <div className={'post-wrap ' + post.type}>
         <PostInfo info={post}/>
         <div className="post-content" dangerouslySetInnerHTML={{__html: post.content}}></div>
+        <Comment list={post.comments}/>
       </div>
     )
   }

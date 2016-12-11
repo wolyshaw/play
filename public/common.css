@@ -229,3 +229,30 @@ p{
 .post-info > div > p{
   padding: 20px 0;
 }
+.comment-warp{
+  width: 1112px;
+  margin: 50px auto;
+}
+.comment-info{
+  font-size: 1.8rem;
+}
+.comment-item{
+  margin: 20px 0;
+}
+.comment-item > span{
+  display: inline-block;
+  font-size: 1.8rem;
+  margin-bottom: 10px;
+}
+.comment-item > span > i{
+  font-size: 1rem;
+}
+.comment-item p{
+  font-size: 1.4rem;
+}
+.comment-reply{
+  margin-left: 40px;
+}
+.comment-reply > span{
+  font-size: 1.6rem;
+}
