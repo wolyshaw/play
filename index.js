@@ -18,7 +18,6 @@ render((
       {
         // <Route path="/events/:id" component={events}/>
         // <Route path="/page/:id" component={page}/>
-        // <Route path="/tag/:id" component={post}/>
       }
     </Route>
   </Router>

@@ -201,7 +201,19 @@ p{
  */
 .post-wrap > div.post-content{
   width: 1112px;
-  margin: 0 auto;
+  margin: 80px auto;
+}
+.post-wrap > div.post-content *{
+  font-size: 1.6rem;
+}
+.post-wrap > div.post-content p{
+  margin: 20px 0;
+}
+.post-wrap > div.post-content img{
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 50px auto;
 }
 .post-wrap > .post-info > div{
   width: 1112px;
@@ -214,6 +226,6 @@ p{
 .post-wrap > .image-info *{
   color: #fff;
 }
-.post-info h3{
-
+.post-info > div > p{
+  padding: 20px 0;
 }

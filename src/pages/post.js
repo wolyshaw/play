@@ -1,19 +1,28 @@
 import React, {Component} from 'react'
 import { Router, Route, Link } from 'react-router'
+import TagList from '../modules/tagList'
+import CategorieList from '../modules/categorieList'
 import {showLoading, ajax} from '../util/util'
 
 export class PostInfo extends Component{
   render(){
     let info = this.props.info,
-        hasImage = info.attachments && info.attachments[0],
+        author = this.props.info.author || {},
+        hasImage = info.thumbnail,
         postItemImageStyle = {
-          backgroundImage: 'url( '+ (hasImage ? info.attachments[0].url : "") + ')'
+          backgroundImage: 'url( '+ (hasImage ? info.thumbnail : "") + ')'
         }
     return(
       <div className={'post-info top-info' + (hasImage ? ' image-info' : '')} style={postItemImageStyle}>
         <div>
           <h3>{info.title}</h3>
           <p dangerouslySetInnerHTML={{__html: info.excerpt}}></p>
+          <div>
+            <span>文章作者：<Link to={author.url ? author.url : '/author/' + author.id}>{author.nickname}</Link></span>
+            <span>发布日期：<data>{info.date}</data></span>
+            {info.categories ? <CategorieList list={info.categories}/> : ''}
+            {info.tags ? <TagList list={info.tags}/> : ''}
+          </div>
         </div>
       </div>
     )
