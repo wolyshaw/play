@@ -54,6 +54,7 @@ p{
 }
 .w-inp-outline{
   outline: none;
+  border: 1px solid rgba(0, 0, 0, .65);
 }
 .w-btn{
   padding: 10px 15px;
@@ -208,6 +209,7 @@ p{
 }
 .post-wrap > div.post-content p{
   margin: 20px 0;
+  text-align: justify;
 }
 .post-wrap > div.post-content img{
   display: block;
@@ -228,6 +230,7 @@ p{
 }
 .post-info > div > p{
   padding: 20px 0;
+  text-align: justify;
 }
 .comment-warp{
   width: 1112px;
@@ -255,4 +258,34 @@ p{
 }
 .comment-reply > span{
   font-size: 1.6rem;
+}
+.comment-create{
+  margin: 20px 0;
+}
+.comment-create > label{
+  display: table;
+  margin: 20px 0;
+}
+.comment-create > label > input,
+.comment-create > label > textarea{
+  outline: none;
+  border: 1px solid rgba(0, 0, 0, .15);
+  transition: border ease .3s;
+  border-radius: 3px;
+  padding: 5px 10px;
+}
+.comment-create > label > input:focus,
+.comment-create > label > textarea:focus{
+  border: 1px solid rgba(0, 0, 0, .65);
+}
+.comment-create > label > input{
+  width: 260px;
+}
+.comment-create > label > span{
+  vertical-align: top;
+  line-height: 27px;
+}
+.comment-create > label > textarea{
+  width: 400px;
+  height: 80px;
 }

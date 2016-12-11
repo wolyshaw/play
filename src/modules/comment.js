@@ -13,25 +13,26 @@ export class CreateComment extends Component {
   }
   pushComment(e){
     e.preventDefault()
-    console.log(addObj([this.state, {json: 'submit_comment', postId: this.props.postId}]))
     ajax({
       data: addObj([this.state, {json: 'submit_comment', post_id: this.props.postId}]),
-      success: r => console.log(r)
+      success: r => {
+        this.setState({
+          name: '',
+          email: '',
+          content: ''
+        })
+      }
     })
   }
-  // componentWillMount(){
-  //   console.log(this.props.postId)
-  //   this.setState({post_id: this.props.postId})
-  // }
   render(){
     let item = this.props.item
     return(
       <form className="comment-create" onSubmit={this.pushComment.bind(this)}>
-        <label><span>名字：</span><input type="text" dedaultValue={this.state.name} onChange={e => this.setState({name: e.target.value})}/></label>
-        <label><span>邮箱：</span><input type="email" dedaultValue={this.state.email} onChange={e => this.setState({email: e.target.value})}/></label>
-        <label><span>内容：</span><textarea dedaultValue={this.state.name} onChange={e => this.setState({content: e.target.value})}></textarea></label>
-        <input type="submit" value="submit"/>
-    </form>
+        <label><span>名字：</span><input type="text" value={this.state.name} onChange={e => this.setState({name: e.target.value})}/></label>
+        <label><span>邮箱：</span><input type="email" value={this.state.email} onChange={e => this.setState({email: e.target.value})}/></label>
+        <label><span>内容：</span><textarea value={this.state.content} onChange={e => this.setState({content: e.target.value})}></textarea></label>
+        <input className="w-btn" type="submit" value="提交评论"/>
+      </form>
     )
   }
 }
