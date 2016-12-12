@@ -292,7 +292,14 @@ p{
 .comment-create .w-btn{
   margin-left: 36px;
 }
-
+.p-footer{
+  border-top: 1px solid rgba(0, 0, 0, .15);
+  padding: 60px 0;
+}
+.p-footer > div{
+  width: 1112px;
+  margin: auto;
+}
 @media screen and (max-width: 980px){
   .home .post-list{
     margin: 0;
@@ -330,5 +337,11 @@ p{
   }
   .comment-create > label > textarea{
     width: 300px;
+  }
+  .p-footer{
+    width: 100%;
+  }
+  .p-footer > div{
+    padding: 0 10px;
   }
 }
