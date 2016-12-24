@@ -6,6 +6,7 @@ import Home from './src/pages/home'
 // import Events from './src/pages/events'
 import Post from './src/pages/post'
 import Main from './src/modules/main'
+import Upload from './src/pages/upload'
 import Header from './src/modules/header'
 import Categorie from './src/pages/categorie'
 
@@ -15,6 +16,7 @@ render((
       <IndexRoute component={Home}/>
       <Route path="/categorie/:id" component={Categorie}/>
       <Route path="/post/:id" component={Post}/>
+      <Route path="/upload" component={Upload}/>
       {
         // <Route path="/events/:id" component={events}/>
         // <Route path="/page/:id" component={page}/>

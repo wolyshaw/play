@@ -55,7 +55,7 @@ export default class Post extends Component{
       <div className={'post-wrap ' + post.type}>
         <PostInfo info={post}/>
         <div className="post-content" dangerouslySetInnerHTML={{__html: post.content}}></div>
-        <Comment list={post.comments} postId={post.id}/>
+        <Comment list={post.comments} commentStatus={post.comment_status} postId={post.id}/>
       </div>
     )
   }

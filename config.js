@@ -9,8 +9,8 @@ export default {
     },
     {
       id: 1,
-      title: '文章',
-      path: '/'
+      title: '上传',
+      path: '/upload'
     }
   ]
 }

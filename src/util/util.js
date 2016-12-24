@@ -31,11 +31,13 @@ export function showLoading(show){
 }
 
 export function ajax(set) {
-  var url = set.url || '/',
+  console.log(set.data instanceof Object)
+  // return
+  var url = set.url || config.apiHost + '/',
     initData = {json: 1},
-    setData = set.data === undefined ? initData : addObj([initData, set.data]),
-    data = objToStr(setData),
+    setData = set.data === undefined ? initData : set.data instanceof FormData ? set.data : addObj([initData, set.data]),
     type = set.type || 'get',
+    data = type === 'get' ? objToStr(setData) : setData,
     success = set.success,
     complete = set.complete,
     xhr = new XMLHttpRequest()
@@ -54,10 +56,15 @@ export function ajax(set) {
     }
   }
   if (type === 'get') {
-    xhr.open(type, config.apiHost + url + '?' + data, true)
+    xhr.open(type, url + '?' + data, true)
     xhr.send(null)
   } else {
-    xhr.open(type, config.apiHost + url, true)
-    xhr.send(data)
+    xhr.open(type, url, true)
+    if (data instanceof FormData) {
+      xhr.send(data)
+    }else{
+      xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded')
+      xhr.send(objToStr(data))
+    }
   }
 }

@@ -28,9 +28,9 @@ export class CreateComment extends Component {
     let item = this.props.item
     return(
       <form className="comment-create" onSubmit={this.pushComment.bind(this)}>
-        <label><span>名字：</span><input type="text" value={this.state.name} onChange={e => this.setState({name: e.target.value})}/></label>
-        <label><span>邮箱：</span><input type="email" value={this.state.email} onChange={e => this.setState({email: e.target.value})}/></label>
-        <label><span>内容：</span><textarea value={this.state.content} onChange={e => this.setState({content: e.target.value})}></textarea></label>
+        <label><span>名字：</span><input type="text" value={this.state.name} required onChange={e => this.setState({name: e.target.value})}/></label>
+        <label><span>邮箱：</span><input type="email" value={this.state.email} required onChange={e => this.setState({email: e.target.value})}/></label>
+        <label><span>内容：</span><textarea value={this.state.content} required onChange={e => this.setState({content: e.target.value})}></textarea></label>
         <input className="w-btn" type="submit" value="提交评论"/>
       </form>
     )
