@@ -17,7 +17,7 @@ export class Upfile extends Component{
     }
   }
 
-  upFile(e){
+  upFile(form){
     let file = new FormData(),
       date = new Date(), year = date.getFullYear(), month = (date.getMonth() + 1),
       path = this.state.path,
@@ -30,12 +30,20 @@ export class Upfile extends Component{
       type: 'post',
       data: file,
       success: r => {
+        this.setState({
+          token: undefined,
+          file: undefined,
+          fileName: '',
+          bucket: '',
+          path: ''
+        })
         console.log(r)
       }
     })
   }
 
   getToken(e){
+    let form = e.target
     e.preventDefault()
     ajax({
       // url: 'http://api.abcdea.net/token',
@@ -46,7 +54,7 @@ export class Upfile extends Component{
         this.setState({
           token: r.data ? r.data.token : undefined
         })
-        this.upFile(e)
+        this.upFile(form)
       }
     })
   }

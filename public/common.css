@@ -36,16 +36,23 @@ p{
 
 /* headerNav */
 
-.p-header {
+.p-header ,
+.p-header .p-nav ,
+.p-header .reg_btn{
   height: 60px;
   line-height: 60px;
-  border-bottom: 1px solid rgba(0, 0, 0, .1);
   font-size: 1.4rem;
 }
-.p-header a:hover {
+.p-header{
+  border-bottom: 1px solid rgba(0, 0, 0, .1);
+}
+.p-header .p-nav{
+  display: inline-block;
+}
+.p-header .p-nav a:hover {
   background-color: rgba(0, 0, 0, .05);
 }
-.p-header a {
+.p-header .p-nav a {
   display: block;
   width: 80px;
   text-align: center;
@@ -54,6 +61,18 @@ p{
   float: left;
   list-style: none;
   transition: all .3s ease-in-out;
+}
+.p-header .reg_btn{
+  display: inline-block;
+  float: right;
+}
+.p-header .reg_btn > a{
+  display: inline-block;
+  cursor: pointer;
+}
+.p-header .reg_btn > span{
+  display: inline-block;
+  margin: 0 10px;
 }
 .w_form{
   display: block;
@@ -71,6 +90,7 @@ p{
 }
 .w_form > label{
   position: relative;
+  display: block;
 }
 .w_form > label > span{
   color: rgba(0, 0, 0, .65);
@@ -78,10 +98,19 @@ p{
   top: -10px;
   left: 15px;
   background-color: #fff;
+  position: absolute;
 }
 .w_form .w_input:focus,
 .w_form > label > input:focus{
   border: 1px solid rgba(0, 0, 0, .8);
+}
+.w_form > .file > input[type="file"]{
+  width: 0;
+  height: 0;
+  opacity: 0;
+}
+.w_form > .file > span{
+  position: static;
 }
 .w-inp-outline{
   outline: none;
@@ -100,6 +129,25 @@ p{
 }
 .w-btn:hover{
   background-color: rgba(65, 198, 163, .8);
+}
+.w_popup{
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(255, 255, 255, .9);
+  display: flex;
+  opacity: 0;
+  visibility: hidden;
+  transition: all .2s linear;
+}
+.w_popup_show{
+  opacity: 1;
+  visibility: visible;
+}
+.w_popup > *{
+  margin: auto;
 }
 /**
  * common loading style
