@@ -76,7 +76,10 @@ p{
 }
 .w_form{
   display: block;
-  width: 100%;
+  width: 600px;
+  background-color: #fff;
+  padding: 50px;
+  border-radius: 5px;
 }
 .w_form .w_input,
 .w_form > label > input{
@@ -87,10 +90,12 @@ p{
   line-height: 40px;
   padding: 5px 15px;
   border-radius: 5px;
+  width: 100%;
 }
 .w_form > label{
   position: relative;
   display: block;
+  margin: 20px auto;
 }
 .w_form > label > span{
   color: rgba(0, 0, 0, .65);
@@ -111,6 +116,15 @@ p{
 }
 .w_form > .file > span{
   position: static;
+  display: none;
+}
+.w_reg_box > .file{
+  width: 120px;
+  height: 120px;
+  border-radius: 100%;
+  margin: auto;
+  cursor: pointer;
+  background-color: rgba(0, 0, 0, .15);
 }
 .w-inp-outline{
   outline: none;
@@ -148,6 +162,12 @@ p{
 }
 .w_popup > *{
   margin: auto;
+}
+.w_popup .close{
+  position: absolute;
+  right: 0;
+  cursor: pointer;
+  font-size: 2rem;
 }
 /**
  * common loading style
