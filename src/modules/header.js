@@ -3,6 +3,7 @@ import { Router, Route, Link } from 'react-router'
 import {showLoading, ajax} from '../util/util'
 import config from '../../config'
 import Login_popup from './login_popup'
+import Hint from './hint'
 
 export default class Header extends Component{
   constructor(s){

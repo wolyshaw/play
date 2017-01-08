@@ -31,16 +31,15 @@ export function showLoading(show){
 }
 
 export function ajax(set) {
-  console.log(set.data instanceof Object)
-  // return
-  var url = set.url || config.apiHost + '/',
+  var url = config.apiHost + set.url,
     initData = {json: 1},
     setData = set.data === undefined ? initData : set.data instanceof FormData ? set.data : addObj([initData, set.data]),
-    type = set.type || 'get',
+    type = set.type || 'post',
     data = type === 'get' ? objToStr(setData) : setData,
     success = set.success,
     complete = set.complete,
     xhr = new XMLHttpRequest()
+  xhr.ithCrendentials = true
   showLoading(true)
   xhr.onreadystatechange = () => {
     if (xhr.readyState === 4) {

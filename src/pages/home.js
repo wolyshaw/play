@@ -42,7 +42,7 @@ export default class Home extends Component{
     })
   }
   componentWillMount(){
-    this.getPosts(this.state.page)
+    // this.getPosts(this.state.page)
   }
   render(){
     let pages = this.state.data.pages,

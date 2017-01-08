@@ -1,6 +1,6 @@
 export default {
   debug: true,
-  apiHost: 'http://demo.abcdea.net/api',
+  apiHost: 'http://localhost:8000',
   navs: [
     {
       id: 0,

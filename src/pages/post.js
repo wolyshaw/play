@@ -39,6 +39,7 @@ export default class Post extends Component{
   }
   componentWillMount(){
     ajax({
+      url: '/get/post',
       data: {
         p: this.props.params.id
       },

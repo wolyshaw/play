@@ -7,6 +7,14 @@ export default class Main extends Component{
   constructor(s){
     super(s)
   }
+  componentWillMount(){
+    ajax({
+      url: '/userinfo',
+      success: r => {
+        console.log(r)
+      }
+    })
+  }
   render(){
     return(
       <div className="main">
