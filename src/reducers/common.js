@@ -1,16 +1,38 @@
-export const hint = (state = {text: 'hint', show: false}, action) => {
+import {combineReducers} from 'redux'
+const initHint = {
+  message: undefined,
+  status: 'success',
+  delay: 3000,
+  show: false
+}
+export const hint = (state = initHint, action) => {
   switch (action.type) {
     case 'show_hint':
       return {
-        text: action.text,
+        message: action.message,
+        status: action.status || 'success',
+        delay: action.delay || 3000,
         show: true
       }
     case 'hide_hint':
+      return initHint
+    default:
+      return state
+  }
+}
+
+export const loading = (state = {show: false}, action) => {
+  switch (action.type) {
+    case 'set_loading':
       return {
-        text: '',
-        show: false
+        show
       }
     default:
       return state
   }
 }
+
+export default combineReducers({
+  hint,
+  loading
+})

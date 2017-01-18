@@ -1,20 +1,26 @@
-export const showHint = text => ({
-  type: 'show_hint',
-  text
-})
+export const showHint = set => {
+  let {message, delay, status} = set
+  return {
+    type: 'show_hint',
+    message,
+    status,
+    delay,
+    show: true
+  }
+}
 
-export const hideHint = () => ({
+export const hideHint = set => ({
   type: 'hide_hint',
-  text: '',
+  message: undefined,
   show: false
 })
 
-const setHint = text => {
+const setHint = data => {
   return (dispatch) => {
-    dispatch(showHint(text))
+    dispatch(showHint(data))
     setTimeout(() => {
       dispatch(hideHint())
-    }, 1000)
+    }, data.delay || 3000)
   }
 }
 

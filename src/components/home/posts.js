@@ -8,7 +8,7 @@ import Hint from '../common/hint'
 let mapStateToProps = state => {
   console.log(state)
   return ({
-    show: state.hint.show
+    show: state.common.hint.show
   })
 }
 

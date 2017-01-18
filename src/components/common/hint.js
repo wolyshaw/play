@@ -1,9 +1,9 @@
 import React from 'react'
 
 let Hint = (props) => {
-  let {open, show} = props
+  let {message, delay, show} = props
   return (
-    <div style={{display: show ? 'block' : 'none'}}>hint</div>
+    <div className="w-hint-warp" style={{display: show ? 'block' : 'none'}}>{message}</div>
   )
 }
 
