@@ -1,13 +1,8 @@
-export const posts = (state = {posts: [{title: '123'}]}, action) => {
+export const posts = (state = {data: {}}, action) => {
   switch (action.type) {
     case 'get_posts':
-    console.log(action)
       return {
-        posts: [
-          {
-            title: '456'
-          }
-        ]
+        data: action.data
       }
     default:
       return state

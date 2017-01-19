@@ -11,6 +11,7 @@ import Upload from './src/pages/upload'
 // import Header from './src/modules/header'
 // import Categorie from './src/pages/categorie'
 import store from './src/reducers'
+import {getPosts} from './src/actions/posts'
 
 let playStore = createStore(
 	store,
@@ -21,7 +22,7 @@ render(
 	<Provider store={playStore}>
     <Router history={browserHistory}>
       <Route path="/" component={Main}>
-        <IndexRoute component={Home}/>
+        <IndexRoute component={Home} onEnter={playStore.dispatch(getPosts())}/>
         <Route path="/upload" component={Upload}/>
       </Route>
     </Router>

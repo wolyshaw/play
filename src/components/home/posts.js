@@ -5,31 +5,14 @@ import {getPosts} from '../../actions/posts'
 import setHint from '../../actions/common/hint'
 import Hint from '../common/hint'
 
-let mapStateToProps = state => {
-  console.log(state)
-  return ({
-    show: state.common.hint.show
-  })
-}
-
-let mapDispatchToProps = dispatch => ({
-  propsGetPosts: () => dispatch(getPosts({text: '456'})),
-  propsSetHint: () => dispatch(setHint({text: '456'}))
-})
-
-let Posts = (props) => {
-  let {propsGetPosts, propsSetHint, show} = props
+let Posts = props => {
   return (
     <div>
-      <div onClick={propsSetHint}>
+      <div>
         posts
-        <Hint show={show}/>
       </div>
     </div>
   )
 }
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Posts)
+export default Posts
