@@ -5,7 +5,6 @@ import Hint from '../../components/common/hint'
 import Loading from '../../components/common/loading'
 
 let mapStateToProps = state => {
-  console.log(state)
   return ({
     hintShow: state.common.hint.show,
     message: state.common.hint.message,
@@ -14,10 +13,6 @@ let mapStateToProps = state => {
     loadingShow: state.common.loading.show
   })
 }
-
-let mapDispatchToProps = dispatch => ({
-  propsSetHint: () => dispatch(setHint({message: '456'}))
-})
 
 let Main = props => {
   let {hintShow, children, message, propsSetHint, delay, status, loadingShow} = props
@@ -32,6 +27,5 @@ let Main = props => {
 }
 
 export default connect(
-  mapStateToProps,
-  mapDispatchToProps
+  mapStateToProps
 )(Main)

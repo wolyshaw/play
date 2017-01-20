@@ -1,16 +1,14 @@
 import React from 'react'
-import {Link} from 'react-router'
-import {connect} from 'react-redux'
-import {getPosts} from '../../actions/posts'
-import setHint from '../../actions/common/hint'
-import Hint from '../common/hint'
+import PostItem from './postItem'
 
 let Posts = props => {
+  let {posts} = props,
+    list = posts.data || []
   return (
     <div>
-      <div>
-        posts
-      </div>
+      {
+        list.map(item => <PostItem item={item}/>)
+      }
     </div>
   )
 }
