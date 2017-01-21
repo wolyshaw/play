@@ -9,3 +9,5 @@ let Footer = props => {
     </footer>
   )
 }
+
+export default Footer

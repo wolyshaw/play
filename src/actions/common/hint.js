@@ -9,10 +9,8 @@ export const showHint = set => {
   }
 }
 
-export const hideHint = set => ({
-  type: 'hide_hint',
-  message: undefined,
-  show: false
+export const hideHint = () => ({
+  type: 'hide_hint'
 })
 
 const setHint = data => {

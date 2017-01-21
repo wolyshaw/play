@@ -25,7 +25,7 @@ export const loading = (state = {show: false}, action) => {
   switch (action.type) {
     case 'set_loading':
       return {
-        show
+        show: action.show
       }
     default:
       return state

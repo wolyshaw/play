@@ -12,7 +12,7 @@ let playStore = createStore(
 	store,
 	applyMiddleware(thunk)
 )
-
+console.log(playStore.getState())
 render(
 	<Provider store={playStore}>
     <Router history={browserHistory}>

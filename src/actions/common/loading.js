@@ -3,6 +3,6 @@ export const loading = show => ({
   show
 })
 
-const setLoading = show => dispatch(loading(show))
+const setLoading = show => (dispatch => dispatch(loading(show)))
 
 export default setLoading
