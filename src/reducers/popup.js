@@ -15,6 +15,22 @@ export const login = (state = {isShow: false}, action) => {
   }
 }
 
+export const reg = (state = {isShow: false}, action) => {
+  switch (action.type) {
+    case 'show_reg':
+      return {
+        isShow: true
+      }
+    case 'hide_reg':
+      return {
+        isShow: false
+      }
+    default:
+      return state
+  }
+}
+
 export default combineReducers({
-  login
+  login,
+  reg
 })

@@ -1,10 +1,6 @@
-export const showLogin = set => {
-  let {nice_name, password, email} = set
+export const showLogin = () => {
   return {
-    type: 'show_login',
-    nice_name,
-    password,
-    email
+    type: 'show_login'
   }
 }
 

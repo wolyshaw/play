@@ -1,6 +1,8 @@
 import React, {Component} from 'react'
 import {Link} from 'react-router'
 import {connect} from 'react-redux'
+import {showLogin, hideLogin} from '../../actions/popup/login'
+import {showReg, hideReg} from '../../actions/popup/reg'
 
 let mapStateToProps = state => {
   return ({
@@ -27,9 +29,9 @@ class Header extends Component {
         </nav>
         <div className="right">
           <div className="login-btn">
-            <a>登录</a>
+            <a onClick={() => dispatch(showLogin())}>登录</a>
             <span>|</span>
-            <a>注册</a>
+            <a onClick={() => dispatch(showReg())}>注册</a>
           </div>
         </div>
       </header>
