@@ -23,13 +23,18 @@ class Popup extends Component {
     this.props.dispatch(hideReg())
   }
 
+  popupHint(set) {
+    this.props.dispatch(setHint({
+      message: set.message
+    }))
+  }
+
   render() {
     let {popup, dispatch} = this.props
-    console.log(dispatch)
     return (
       <div>
-        <Login login={popup.login} hideLogin={this.hideLogin.bind(this)} dispatch={dispatch}/>
-        <Reg reg={popup.reg} hideReg={this.hideReg.bind(this)} dispatch={dispatch}/>
+        <Login login={popup.login} hideLogin={this.hideLogin.bind(this)} popupHint={this.popupHint.bind(this)}/>
+        <Reg reg={popup.reg} hideReg={this.hideReg.bind(this)} popupHint={this.popupHint.bind(this)}/>
       </div>
     )
   }
