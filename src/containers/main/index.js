@@ -5,7 +5,6 @@ import Hint from '../../components/common/hint'
 import Header from '../common/header'
 import Loading from '../../components/common/loading'
 import Popup from '../popup'
-import Login from '../../components/popup/login'
 
 let mapStateToProps = state => {
   return ({

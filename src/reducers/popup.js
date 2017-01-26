@@ -1,7 +1,6 @@
 import {combineReducers} from 'redux'
 
 export const login = (state = {isShow: false}, action) => {
-  console.log(action)
   switch (action.type) {
     case 'show_login':
       return {

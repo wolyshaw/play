@@ -1,8 +1,8 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
+import Login from './login'
+import Reg from './reg'
 import setHint from '../../actions/common/hint'
-import Login from '../../components/popup/login'
-import Reg from '../../components/popup/reg'
 import {hideLogin} from '../../actions/popup/login'
 import {hideReg} from '../../actions/popup/reg'
 
