@@ -31,7 +31,12 @@ class Login extends Component {
       }))
       return
     }
-    this.props.dispatch(toLogin())
+    this.props.dispatch(toLogin({
+      nice_name: loginData.nice_name.value.trim(),
+      password: loginData.password.value.trim()
+    }))
+    loginData.nice_name.value = ''
+    loginData.password.value = ''
   }
 
   render() {

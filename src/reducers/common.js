@@ -32,7 +32,19 @@ export const loading = (state = {show: false}, action) => {
   }
 }
 
+export const user = (state = {}, action) => {
+  switch (action.type) {
+    case 'get_user':
+      return {
+        data: action.data
+      }
+    default:
+      return state
+  }
+}
+
 export default combineReducers({
   hint,
-  loading
+  loading,
+  user
 })

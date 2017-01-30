@@ -31,7 +31,7 @@ export function showLoading(show){
 }
 
 export function ajax(set) {
-  var url = config.apiHost + set.url,
+  var url = set.url,
     initData = {json: 1},
     setData = set.data === undefined ? initData : set.data instanceof FormData ? set.data : addObj([initData, set.data]),
     type = set.type || 'post',
@@ -40,7 +40,9 @@ export function ajax(set) {
     complete = set.complete,
     xhr = new XMLHttpRequest()
   xhr.ithCrendentials = true
-  showLoading(true)
+
+    xhr.open(type, url, true)
+  // showLoading(true)
   xhr.onreadystatechange = () => {
     if (xhr.readyState === 4) {
       showLoading(false)
@@ -58,7 +60,6 @@ export function ajax(set) {
     xhr.open(type, url + '?' + data, true)
     xhr.send(null)
   } else {
-    xhr.open(type, url, true)
     if (data instanceof FormData) {
       xhr.send(data)
     }else{

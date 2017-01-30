@@ -1,6 +1,8 @@
 import fetch from 'isomorphic-fetch'
 import config from '../../../config'
 import setLoading from '../common/loading'
+import {ajax} from '../../util/util'
+import setHint from '../common/hint'
 
 export const showLogin = () => {
   return {
@@ -17,14 +19,19 @@ export const toLogin = set => {
     dispatch(setLoading(true))
     fetch(config.apiHost + '/login', {
       method: 'post',
+      credentials: 'include',
       headers: {
         "Content-Type": "application/x-www-form-urlencoded"
       },
-      body: 'nice_name=shaw&password=123456'
+      body: 'nice_name=' + set.nice_name + '&password=' + set.password
     })
       .then(res => res.json())
       .then(r => {
         dispatch(setLoading(false))
+        dispatch(setHint({
+          message: r.msg
+        }))
+        dispatch(hideLogin())
         return {
           type: 'to_login',
           data: r.data
