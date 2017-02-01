@@ -6,18 +6,19 @@ import { Provider } from 'react-redux'
 import thunk from 'redux-thunk'
 import Home from './src/components/home'
 import Main from './src/containers/main'
+import Add from './src/containers/add'
 import store from './src/reducers'
 
 let playStore = createStore(
 	store,
 	applyMiddleware(thunk)
 )
-console.log(playStore.getState())
 render(
 	<Provider store={playStore}>
     <Router history={browserHistory}>
-      <Route path="/" component={Main}>
+			<Route path="/" component={Main}>
         <IndexRoute component={Home}/>
+				<Route path="/add" component={Add}/>
       </Route>
     </Router>
 	</Provider>,

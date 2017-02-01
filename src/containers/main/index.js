@@ -4,6 +4,7 @@ import setHint from '../../actions/common/hint'
 import Hint from '../../components/common/hint'
 import Header from '../common/header'
 import Loading from '../../components/common/loading'
+import Footer from '../../components/common/footer'
 import Popup from '../popup'
 
 let mapStateToProps = state => {
@@ -25,8 +26,9 @@ let Main = props => {
       <Header common={common}/>
       {children}
       <Popup/>
-      <Loading show={loadingShow}/>
-      <Hint message={message} status={status} delay={delay} show={hintShow}/>
+      {loadingShow ? <Loading show={loadingShow}/> : ''}
+      {hintShow ? <Hint message={message} status={status} delay={delay} show={hintShow}/> : ''}
+      <Footer year={2017}/>
     </div>
   )
 }

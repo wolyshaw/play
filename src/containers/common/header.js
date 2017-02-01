@@ -3,7 +3,7 @@ import {Link} from 'react-router'
 import {connect} from 'react-redux'
 import {showLogin, hideLogin} from '../../actions/popup/login'
 import {showReg, hideReg} from '../../actions/popup/reg'
-import {getUser} from '../../actions/common/user'
+import {getUser, logout} from '../../actions/common/user'
 
 const mapStateToProps = state => {
   return ({
@@ -24,6 +24,19 @@ const LoginBox = props => {
   )
 }
 
+const UserInfo = props => {
+  let {user, dispatch} = props
+  return (
+    <div className="right">
+      <div className="login-btn">
+        <a>{user.nice_name}</a>
+        <span>|</span>
+        <a onClick={() => dispatch(logout())}>退出</a>
+      </div>
+    </div>
+  )
+}
+
 class Header extends Component {
   constructor(props) {
     super(props)
@@ -34,14 +47,15 @@ class Header extends Component {
   }
 
   render() {
-    let {posts, dispatch} = this.props
+    let {posts, dispatch, common} = this.props
     return (
       <header className="header clearfix">
         <div className="logo"><Link to="/">wolyshaw</Link></div>
         <nav className='clearfix'>
           <Link to="/">首页</Link>
+          <Link to="/add">新增文章</Link>
         </nav>
-        <LoginBox dispatch={dispatch}/>
+        {common.user.data ? <UserInfo dispatch={dispatch} user={common.user.data}/> : <LoginBox dispatch={dispatch}/>}
       </header>
     )
   }

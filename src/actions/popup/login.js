@@ -32,10 +32,10 @@ export const toLogin = set => {
           message: r.msg
         }))
         dispatch(hideLogin())
-        return {
-          type: 'to_login',
+        return dispatch({
+          type: 'get_user',
           data: r.data
-        }
+        })
       })
   }
 }

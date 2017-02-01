@@ -8,7 +8,7 @@ export const getPosts = () => {
       .then(res => res.json())
       .then(r => {
         dispatch(setLoading(false))
-        return dispatch({
+        dispatch({
           type: 'get_posts',
           data: r
         })

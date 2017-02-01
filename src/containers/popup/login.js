@@ -10,8 +10,6 @@ let loginData = {
 
 const mapStateToProps = state => ({})
 
-const popupHint = set => setHint(set)
-
 class Login extends Component {
   constructor(props) {
     super(props)
@@ -20,13 +18,13 @@ class Login extends Component {
   submitLogin(e) {
     e.preventDefault()
     if (!loginData.nice_name.value.trim()) {
-      this.props.dispatch(popupHint({
+      this.props.dispatch(setHint({
         message: '登录名未填写'
       }))
       return
     }
     if (!loginData.password.value.trim()) {
-      this.props.dispatch(popupHint({
+      this.props.dispatch(setHint({
         message: '密码未填写'
       }))
       return

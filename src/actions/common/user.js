@@ -15,3 +15,17 @@ export const getUser = r => {
     )
   }
 }
+
+export const logout = () => {
+  return dispatch => {
+    fetch(config.apiHost + '/logout', {
+      method: 'post',
+      credentials: 'include'
+    })
+      .then(res => res.json())
+      .then(r => dispatch({
+        type: 'get_user',
+        data: undefined
+      }))
+  }
+}
