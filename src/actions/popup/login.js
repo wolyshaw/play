@@ -1,7 +1,7 @@
 import fetch from 'isomorphic-fetch'
 import config from '../../../config'
 import setLoading from '../common/loading'
-import {ajax} from '../../util/util'
+import {apiFetch} from '../../util/util'
 import setHint from '../common/hint'
 
 export const showLogin = () => {

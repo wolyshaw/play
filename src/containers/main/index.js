@@ -26,9 +26,9 @@ let Main = props => {
       <Header common={common}/>
       {children}
       <Popup/>
-      {loadingShow ? <Loading show={loadingShow}/> : ''}
-      {hintShow ? <Hint message={message} status={status} delay={delay} show={hintShow}/> : ''}
-      <Footer year={2017}/>
+      <Loading show={loadingShow}/>
+      <Hint message={message} status={status} delay={delay} show={hintShow}/>
+      <Footer year="2017"/>
     </div>
   )
 }

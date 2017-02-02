@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import setHint from '../../actions/common/hint'
+import {createPost} from '../../actions/posts'
 import {showLogin, hideLogin} from '../../actions/popup/login'
 
 const AddPost = props => {
@@ -8,6 +9,7 @@ const AddPost = props => {
   let postData = {
     title: undefined,
     content: undefined,
+    summary: undefined,
     tags: undefined,
     ctegory: undefined
   }
@@ -26,13 +28,20 @@ const AddPost = props => {
       }))
       return
     }
-    console.log(postData.title.value.trim())
+    dispatch(createPost({
+      title: postData.title.value.trim(),
+      content: postData.content.value.trim(),
+      summary: postData.summary.value.trim(),
+      success: r => console.log(r)
+    }))
   }
 
   return (
     <form onSubmit={e => submiutPost(e)}>
       <input type="text" ref={title => postData.title = title}/>
+      <textarea ref={summary => postData.summary = summary}></textarea>
       <textarea ref={content => postData.content = content}></textarea>
+      <input type="submit" value="submit"/>
     </form>
   )
 }

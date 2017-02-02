@@ -34,7 +34,9 @@ export const apiFetch = (set, dispatch) => {
         message: r.msg
       }))
       if (r.code === 200) {
-        set.success(r)
+        if (set.success && typeof set.success === 'function') {
+          set.success(r)
+        }
       }
     })
 }
