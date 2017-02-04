@@ -5,7 +5,7 @@ let Posts = props => {
   let {posts} = props,
     list = posts.data || []
   return (
-    <div>
+    <div className="w-pagewidth">
       {
         list.map(item => <PostItem item={item}/>)
       }

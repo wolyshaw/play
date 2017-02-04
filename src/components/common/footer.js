@@ -4,8 +4,10 @@ import {Link} from 'react-router'
 let Footer = props => {
   let {year} = props
   return (
-    <footer>
-      <Link to="https://xwlong.com">wolyshaw</Link>
+    <footer className="w-footer">
+      <div className="w-marginauto w-comwidth">
+        <a href="https://xwlong.com">wolyshaw</a>
+      </div>
     </footer>
   )
 }

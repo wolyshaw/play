@@ -2,7 +2,17 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import setHint from '../../actions/common/hint'
 import {createPost} from '../../actions/posts'
-import {showLogin, hideLogin} from '../../actions/popup/login'
+import {showLogin} from '../../actions/popup/login'
+import {showReg} from '../../actions/popup/reg'
+
+const LoginInfoHint = props => {
+  let {dispatch} = props
+  return (
+    <div>
+      <p>您暂未登录，<span onClick={() => dispatch(showLogin())}>登录</span>或<span onClick={() => dispatch(showReg())}>注册</span>后继续操作。</p>
+    </div>
+  )
+}
 
 const AddPost = props => {
   let {dispatch} = props
@@ -59,7 +69,7 @@ class Add extends Component {
     let {dispatch, user} = this.props
     return (
       <div>
-        {user ? <AddPost dispatch={dispatch}/> : '暂未登录'}
+        {user ? <AddPost dispatch={dispatch}/> : <LoginInfoHint dispatch={dispatch}/>}
       </div>
     )
   }

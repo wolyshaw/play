@@ -28,11 +28,10 @@ class Post extends Component {
     let {params} = this.props
     let {title, summary, content} = this.state.post
     return (
-      <div>
-        <h3>{title}</h3>
-        <p>{summary}</p>
-        <div>{content}</div>
-      </div>
+      <article className="w-article">
+        <header className="w-article-header clearfix"><h3>{title}</h3></header>
+        <div className="w-article-content"><p>{content}</p></div>
+      </article>
     )
   }
 }

@@ -1,5 +1,5 @@
 html, body, div, span, ul, li, nav, header, footer, code, pre, p, h1, h2, h3, h4, h5, h6, form, input{
-  font-size: 65%;
+  font-size: 12px;
   box-sizing: border-box;
   padding: 0;
   margin: 0;
@@ -34,6 +34,29 @@ p{
   height: 0;
 }
 
+.w-marginauto{
+  margin: auto;
+}
+.w-comwidth{
+  width: 960px;
+}
+.w-pagewidth{
+  width: 660px;
+}
+.w-next > span{
+  display: inline-block;
+  width: 240px;
+  cursor: pointer;
+  padding: 15px 0;
+  text-align: center;
+  border-radius: 5px;
+  border: 1px solid rgba(0, 0, 0, .65);
+}
+.w-footer{
+  padding: 20px 0;
+  padding-bottom: 80px;
+  margin-top: 50px;
+}
 .w-button{
 	display: block;
 	width: 120px;
@@ -109,9 +132,8 @@ p{
 	font-size: 16px;
 }
 .w-article{
-	width: 100%;
 	padding: 0 10px;
-	margin: 10px auto;
+	margin: 30px auto;
 }
 .w-article-header span{
 	display: inline-block;
@@ -133,7 +155,7 @@ p{
 	color: #999;
 	font-size: 14px;
 	line-height: 1.8;
-	padding: 20px 0;
+	padding: 10px 0;
 }
 .w-article-footer{
 	color: #999;

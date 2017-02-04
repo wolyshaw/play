@@ -23,7 +23,7 @@ class PostsList extends Component {
   render() {
     let {posts, dispatch} = this.props
     return (
-      <div>
+      <div className="w-comwidth w-marginauto">
         <Posts posts={posts}/>
         <NextPost next={() => dispatch(getPosts())}/>
       </div>
