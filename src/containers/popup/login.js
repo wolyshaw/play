@@ -42,10 +42,14 @@ class Login extends Component {
     return (
       <div className={'w_popup login' + (login.isShow ? ' w_popup_show' : '')}>
         <span className="close" onClick={() => hideLogin()}>关闭</span>
-        <form onSubmit={e => this.submitLogin(e)}>
-          <label><span>昵称：</span><input ref={nice_name => loginData.nice_name = nice_name} type="text" /></label>
-          <label><span>密码：</span><input ref={password => loginData.password = password} type="password" /></label>
-          <input type="submit" className="w-btn" value="提交" />
+        <form className="w-form" onSubmit={e => this.submitLogin(e)}>
+          <label className="w-label clearfix">
+            <span className="w-span">昵称：</span><input className="w-input" ref={nice_name => loginData.nice_name = nice_name} type="text" />
+          </label>
+          <label className="w-label clearfix">
+            <span className="w-span">密码：</span><input className="w-input" ref={password => loginData.password = password} type="password" />
+          </label>
+          <input type="submit" className="w-button  w-submit" value="提交" />
         </form>
       </div>
     )

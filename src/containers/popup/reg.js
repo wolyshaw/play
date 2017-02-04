@@ -49,11 +49,17 @@ class Reg extends Component {
     return (
       <div className={'w_popup reg' + (reg.isShow ? ' w_popup_show' : '')}>
         <span className="close" onClick={() => hideReg()}>关闭</span>
-        <form onSubmit={e => this.submitReg(e)}>
-          <label><span>昵称：</span><input ref={nice_name => regData.nice_name = nice_name} type="text" /></label>
-          <label><span>密码：</span><input ref={password => regData.password = password} type="password" /></label>
-          <label><span>邮箱：</span><input ref={email => regData.email = email} type="email" /></label>
-          <input type="submit" className="w-btn" value="提交" />
+        <form className="w-form" onSubmit={e => this.submitReg(e)}>
+          <label className="w-label clearfix">
+            <span className="w-span">昵称：</span><input className="w-input" ref={nice_name => regData.nice_name = nice_name} type="text" />
+          </label>
+          <label className="w-label clearfix">
+            <span className="w-span">密码：</span><input className="w-input" ref={password => regData.password = password} type="password" />
+          </label>
+          <label className="w-label clearfix">
+            <span className="w-span">邮箱：</span><input className="w-input" ref={email => regData.email = email} type="email" />
+          </label>
+          <input type="submit" className="w-button  w-submit" value="提交" />
         </form>
       </div>
     )

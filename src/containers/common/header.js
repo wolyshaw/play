@@ -29,7 +29,7 @@ const UserInfo = props => {
   return (
     <div className="right">
       <div className="login-btn">
-        <a>{user.nice_name}</a>
+        <Link to={'/user/' + user._id}>{user.nice_name}</Link>
         <span>|</span>
         <a onClick={() => dispatch(logout())}>退出</a>
       </div>

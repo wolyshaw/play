@@ -14,7 +14,7 @@ export const objToStr = obj => {
 }
 
 export const apiFetch = (set, dispatch) => {
-  let init, setting
+  let init, setting, isHint
   init = {
     method: 'post',
     credentials: 'include',
@@ -25,14 +25,17 @@ export const apiFetch = (set, dispatch) => {
   setting = Object.assign({}, init, {
     body: objToStr(set.body)
   })
+  isHint = set.hint === undefined ? true : set.hint
   dispatch(setLoading(true))
   fetch(set.url, setting)
     .then(res => res.json())
     .then(r => {
       dispatch(setLoading(false))
-      dispatch(setHint({
-        message: r.msg
-      }))
+      if (isHint && dispatch) {
+        dispatch(setHint({
+          message: r.msg
+        }))
+      }
       if (r.code === 200) {
         if (set.success && typeof set.success === 'function') {
           set.success(r)

@@ -32,3 +32,17 @@ export const createPost = data => {
     apiFetch(set, dispatch)
   }
 }
+
+export const getPost = data => {
+  return dispatch => {
+    let set = {
+      url: config.apiHost + '/get/post',
+      body: {
+        id: data.id
+      },
+      success: data.success,
+      hint: false
+    }
+    apiFetch(set, dispatch)
+  }
+}
