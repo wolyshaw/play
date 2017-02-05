@@ -3,7 +3,7 @@ import {Link} from 'react-router'
 import {connect} from 'react-redux'
 import {showLogin, hideLogin} from '../../actions/popup/login'
 import {showReg, hideReg} from '../../actions/popup/reg'
-import {getUser, logout} from '../../actions/common/user'
+import {userInfo, logout} from '../../actions/common/user'
 
 const mapStateToProps = state => {
   return ({
@@ -29,6 +29,7 @@ const UserInfo = props => {
   return (
     <div className="right">
       <div className="login-btn">
+        <img src={user.avatar}/>
         <Link to={'/user/' + user._id}>{user.nice_name}</Link>
         <span>|</span>
         <a onClick={() => dispatch(logout())}>退出</a>
@@ -43,7 +44,7 @@ class Header extends Component {
   }
 
   componentWillMount() {
-    this.props.dispatch(getUser())
+    this.props.dispatch(userInfo())
   }
 
   render() {

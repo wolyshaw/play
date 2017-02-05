@@ -1,7 +1,8 @@
 import fetch from 'isomorphic-fetch'
 import config from '../../../config'
+import {apiFetch} from '../../util/util'
 
-export const getUser = r => {
+export const userInfo = r => {
   return dispatch => {
     fetch(config.apiHost + '/userinfo', {
       method: 'post',
@@ -9,7 +10,7 @@ export const getUser = r => {
     })
       .then(res => res.json())
       .then(r => dispatch({
-        type: 'get_user',
+        type: 'user_info',
         data: r.data
       })
     )
@@ -24,8 +25,22 @@ export const logout = () => {
     })
       .then(res => res.json())
       .then(r => dispatch({
-        type: 'get_user',
+        type: 'user_info',
         data: undefined
       }))
+  }
+}
+
+export const getUser = data => {
+  return dispatch => {
+    let set = {
+      url: config.apiHost + '/get/user',
+      body: {
+        id: data.id
+      },
+      success: data.success,
+      hint: false
+    }
+    apiFetch(set, dispatch)
   }
 }

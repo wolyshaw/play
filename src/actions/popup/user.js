@@ -1,7 +1,7 @@
-export const get_user = set => {
+export const user_info = set => {
   let {nice_name, password, email} = set
   return {
-    type: 'get_user',
+    type: 'user_info',
     nice_name,
     password,
     email

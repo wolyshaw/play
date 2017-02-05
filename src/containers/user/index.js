@@ -1,24 +1,23 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {apiFetch} from '../../util/util'
-import {getPost} from '../../actions/posts'
+import {getUser} from '../../actions/common/user'
 
 class User extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      post: {}
+      user: {}
     }
   }
 
   success(r) {
     this.setState({
-      post: r.data
+      user: r.data
     })
   }
 
   componentWillMount() {
-    this.props.dispatch(getPost({
+    this.props.dispatch(getUser({
       id: this.props.params.id,
       success: this.success.bind(this)
     }))
@@ -26,12 +25,9 @@ class User extends Component {
 
   render() {
     let {params} = this.props
-    let {title, summary, content} = this.state.post
+    let {title, summary, content} = this.state.user
     return (
       <div>
-        <h3>{title}</h3>
-        <p>{summary}</p>
-        <div>{content}</div>
       </div>
     )
   }

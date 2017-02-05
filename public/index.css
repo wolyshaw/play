@@ -28,6 +28,14 @@
   height: 100%;
   line-height: inherit;
 }
+.header > .right > .login-btn > img{
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  vertical-align: middle;
+  border-radius: 100%;
+}
 .header > .right > .login-btn > span{
   display: inline-block;
   margin: 0 5px;

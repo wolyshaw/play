@@ -24,7 +24,7 @@ export const toReg = data => {
         email: data.email
       },
       success: r => dispatch({
-        type: 'get_user',
+        type: 'user_info',
         data: r.data
       })
     }

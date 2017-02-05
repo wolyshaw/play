@@ -34,7 +34,7 @@ export const loading = (state = {show: false}, action) => {
 
 export const user = (state = {}, action) => {
   switch (action.type) {
-    case 'get_user':
+    case 'user_info':
       return {
         data: action.data
       }

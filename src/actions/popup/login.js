@@ -33,7 +33,7 @@ export const toLogin = set => {
         }))
         dispatch(hideLogin())
         return dispatch({
-          type: 'get_user',
+          type: 'user_info',
           data: r.data
         })
       })

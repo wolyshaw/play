@@ -6,6 +6,7 @@ import { Provider } from 'react-redux'
 import thunk from 'redux-thunk'
 import Home from './src/components/home'
 import Post from './src/containers/post'
+import User from './src/containers/user'
 import Main from './src/containers/main'
 import Add from './src/containers/add'
 import store from './src/reducers'
@@ -21,6 +22,7 @@ render(
         <IndexRoute component={Home}/>
 				<Route path="/add" component={Add}/>
 				<Route path="/post/:id" component={Post}/>
+				<Route path="/user/:id" component={User}/>
       </Route>
     </Router>
 	</Provider>,
