@@ -7,7 +7,7 @@ export const formatTime = time => {
   let depositTime = new Date(time),
     Y = depositTime.getFullYear(),
     M = (depositTime.getMonth() + 1) < 10 ? '0' + (depositTime.getMonth() + 1) : (depositTime.getMonth() + 1),
-    D = depositTime.getDay() < 10 ? '0' + depositTime.getDay() : depositTime.getDay(),
+    D = depositTime.getDate() < 10 ? '0' + depositTime.getDate() : depositTime.getDate(),
     h = depositTime.getHours() < 10 ? '0' + depositTime.getHours() : depositTime.getHours(),
     m = depositTime.getMinutes() < 10 ? '0' + depositTime.getMinutes() : depositTime.getMinutes(),
     s = depositTime.getSeconds() < 10 ? '0' + depositTime.getSeconds() : depositTime.getSeconds()
