@@ -14,6 +14,7 @@ a {
   color: rgba(0, 0, 0, .85);
   text-decoration: none;
   transition: color .3s ease-in-out;
+  cursor: pointer;
 }
 a:hover {
   color: rgba(0, 0, 0, .65);
@@ -110,14 +111,16 @@ p{
 	height: 40px;
 	line-height: 40px;
 }
-.w-form .w-label .w-span{
+.w-form .w-span{
 	width: 80px;
+  height: 40px;
+  line-height: 40px;
 	text-align: right;
 	display: inline-block;
 	float: left;
 	position: absolute;
 }
-.w-form .w-label .w-input{
+.w-form .w-input{
 	outline: none;
 	display: block;
 	width: 540px;
@@ -128,8 +131,29 @@ p{
 	line-height: 40px;
 	padding: 0 5px;
 }
+.w-form .w-textarea{
+	outline: none;
+	display: block;
+	width: 540px;
+  max-width: 540px;
+	margin-left: 80px;
+	border-radius: 5px;
+	border: 1px solid #e8edf2;
+	height: 40px;
+	line-height: 40px;
+	padding: 0 5px;
+}
 .w-form .w-submit{
 	font-size: 16px;
+}
+.w-add-post-form > *{
+  margin: 10px auto;
+}
+.w-add-post-form > .w-summary{
+  height: 60px;
+}
+.w-add-post-form > .w-content{
+  height: 360px;
 }
 .w-article{
 	padding: 0 10px;
@@ -160,6 +184,11 @@ p{
 .w-article-footer{
 	color: #999;
 	font-size: 14px;
+}
+
+.w-login-hint{
+  margin: 50px auto;
+  text-align: center;
 }
 
 /* headerNav */

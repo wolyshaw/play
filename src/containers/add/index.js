@@ -8,8 +8,8 @@ import {showReg} from '../../actions/popup/reg'
 const LoginInfoHint = props => {
   let {dispatch} = props
   return (
-    <div>
-      <p>您暂未登录，<span onClick={() => dispatch(showLogin())}>登录</span>或<span onClick={() => dispatch(showReg())}>注册</span>后继续操作。</p>
+    <div className="w-login-hint">
+      <p>您暂未登录，<a onClick={() => dispatch(showLogin())}>登录</a>或<a onClick={() => dispatch(showReg())}>注册</a>后继续操作。</p>
     </div>
   )
 }
@@ -47,11 +47,11 @@ const AddPost = props => {
   }
 
   return (
-    <form onSubmit={e => submiutPost(e)}>
-      <input type="text" ref={title => postData.title = title}/>
-      <textarea ref={summary => postData.summary = summary}></textarea>
-      <textarea ref={content => postData.content = content}></textarea>
-      <input type="submit" value="submit"/>
+    <form className="w-form w-add-post-form" onSubmit={e => submiutPost(e)}>
+      <input className="w-input" type="text" ref={title => postData.title = title} placeholder="标题"/>
+      <textarea className="w-textarea w-summary" ref={summary => postData.summary = summary} placeholder="摘要"></textarea>
+      <textarea className="w-textarea w-content"ref={content => postData.content = content} placeholder="内容"></textarea>
+      <input className="w-submit w-button" type="submit" value="submit"/>
     </form>
   )
 }
@@ -68,7 +68,7 @@ class Add extends Component {
   render() {
     let {dispatch, user} = this.props
     return (
-      <div>
+      <div className="w-pagewidth w-marginauto">
         {user ? <AddPost dispatch={dispatch}/> : <LoginInfoHint dispatch={dispatch}/>}
       </div>
     )

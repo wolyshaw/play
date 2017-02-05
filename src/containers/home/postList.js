@@ -25,7 +25,9 @@ class PostsList extends Component {
     return (
       <div className="w-comwidth w-marginauto">
         <Posts posts={posts}/>
-        <NextPost next={() => dispatch(getPosts())}/>
+        {
+          // <NextPost next={() => dispatch(getPosts())}/>
+        }
       </div>
     )
   }
