@@ -1,16 +1,11 @@
-export default {
-  debug: true,
-  apiHost: 'http://localhost:8000',
-  navs: [
-    {
-      id: 0,
-      title: '首页',
-      path: '/'
-    },
-    {
-      id: 1,
-      title: '上传',
-      path: '/upload'
-    }
-  ]
+module.exports = {
+	debug: true,
+	port: 8080,
+	apiHost: 'http://localhost:8000',
+	site: {
+		title: '爱玩-分享好玩',
+		keywords: '',
+		description: '',
+		header: ''
+	}
 }

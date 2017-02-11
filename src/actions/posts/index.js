@@ -3,18 +3,19 @@ import config from '../../../config'
 import {apiFetch} from '../../util/util'
 import setLoading from '../common/loading'
 
-export const getPosts = () => {
+export const getPosts = data => {
   return dispatch => {
-    dispatch(setLoading(true))
-    fetch(config.apiHost + '/get/posts', {method: 'post'})
-      .then(res => res.json())
-      .then(r => {
-        dispatch(setLoading(false))
+    let set = {
+      url: config.apiHost + '/get/posts',
+      hint: false,
+      success: r => {
         dispatch({
           type: 'get_posts',
           data: r
         })
-      })
+      }
+    }
+    apiFetch(set, dispatch)
   }
 }
 

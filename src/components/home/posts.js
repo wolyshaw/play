@@ -7,7 +7,7 @@ let Posts = props => {
   return (
     <div className="w-pagewidth">
       {
-        list.map(item => <PostItem item={item}/>)
+        list.map(item => <PostItem item={item} key={item._id}/>)
       }
     </div>
   )

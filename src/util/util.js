@@ -53,4 +53,5 @@ export const apiFetch = (set, dispatch) => {
         }
       }
     })
+    .catch(err => console.log(err))
 }

@@ -1,31 +1,31 @@
-var express = require('express')
-var path = require('path')
-var compression = require('compression')
-var app = express()
+const express = require('express')
+const path = require('path')
+const compression = require('compression')
+const app = express()
+const webpack = require('webpack')
+const webpackDevMiddleware = require('webpack-dev-middleware')
+const webpackHotMiddleware = require('webpack-hot-middleware')
+const webpackDevConfig = require('./webpack.config.dev')
+const config = require('./config')
+const compiler = webpack(webpackDevConfig)
 app.use(compression())
-var webpack = require('webpack'),
-  webpackDevMiddleware = require('webpack-dev-middleware'),
-  webpackHotMiddleware = require('webpack-hot-middleware'),
-  webpackDevConfig = require('./webpack.config.dev.js');
-var compiler = webpack(webpackDevConfig);
-// attach to the compiler & the server
 app.use(webpackDevMiddleware(compiler, {
-  // public path should be the same with webpack config
   publicPath: webpackDevConfig.output.publicPath,
   noInfo: true,
   stats: {
     colors: true
   }
-}));
-app.use(webpackHotMiddleware(compiler));
-// serve our static stuff like index.css
-app.use('/public', express.static(path.join(__dirname, 'public')))
-app.use('/dist', express.static(path.join(__dirname, 'dist')))
-// send all requests to index.html so browserHistory works
+}))
+app.use(webpackHotMiddleware(compiler))
+let buildDir = 'dist'
+if (config.debug) {
+  buildDir = 'dev'
+}
+app.use(express.static(buildDir))
 app.get('*', function(req, res) {
-  res.sendFile(path.join(__dirname, '', 'index.html'))
+  res.sendFile(path.join(__dirname, buildDir, 'index.html'))
 })
-var PORT = process.env.PORT || 8080
+var PORT = process.env.PORT || config.port
 app.listen(PORT, function() {
   console.log('Production Express server running at localhost:' + PORT)
 })
