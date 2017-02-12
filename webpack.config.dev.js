@@ -1,6 +1,6 @@
 const webpack = require('webpack')
 const path = require('path')
-const config = require('./config')
+const config = require('./config_dev')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const publicPath = 'http://localhost:' + config.port + '/'
