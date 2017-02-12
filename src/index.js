@@ -10,7 +10,6 @@ import Add from './containers/add'
 import Home from './components/home'
 import Post from './containers/Post'
 import './static/common.css'
-import './static/index.css'
 let appStore = createStore(
 	store,
 	applyMiddleware(thunk)
