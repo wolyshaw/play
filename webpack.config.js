@@ -13,11 +13,20 @@ module.exports = {
     publicPath: '/'
   },
   module: {
-    loaders: [{
+    loaders: [
+      {
       test: /\.js$/,
       exclude: /node_modules/,
       loader: 'babel-loader?presets[]=es2015&presets[]=react'
-    }]
+    },
+    {
+      test: /\.css$/,
+      loader: ExtractTextPlugin.extract({
+        fullbackLoader: 'style-loader',
+        loader: ['css-loader?modules&localIdentName=[name]--[local]--[hash:base64:5]']
+      })
+    }
+  ]
   },
   plugins: [
 		new HtmlWebpackPlugin({
@@ -27,6 +36,10 @@ module.exports = {
 			description: config.site.description,
 			header: config.site.header
 		}),
+    new ExtractTextPlugin({
+      filename: 'static/play.css',
+      allChunks: true
+    }),
     new webpack.optimize.UglifyJsPlugin({
       compress: {
         warnings: false
