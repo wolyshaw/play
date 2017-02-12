@@ -1,17 +1,17 @@
-.editor-wrap{
+.editorWrap{
   width: 660px;
   margin: auto;
   border: 1px solid #e8edf2;
   border-radius: 5px;
 }
-.editor-wrap > div{
+.editorWrap > div{
   padding: 10px;
 }
-.editor-wrap > .editor-ctrl{
+.editorWrap > .editorCtrl{
   border-bottom: 1px solid #e8edf2;
   background-color: rgba(0, 0, 0, .05);
 }
-.editor-wrap > .editor-ctrl > span{
+.editorWrap > .editorCtrl > span{
   cursor: pointer;
   display: inline-block;
   width: 20px;
@@ -19,11 +19,11 @@
   text-align: center;
   line-height: 20px;
 }
-.editor-wrap > .editor-content{
+.editorWrap > .editorContent{
   outline: none;
   min-height: 300px;
 }
 [contentEditable=true]:empty:not(:focus):before{
-    content: attr(data-placeholder);
-    color: rgba(0, 0, 0, .3);
+  content: attr(data-placeholder);
+  color: rgba(0, 0, 0, .3);
 }

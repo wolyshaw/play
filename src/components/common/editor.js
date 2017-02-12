@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import render from 'react-dom'
-import '../../static/editor.css'
+import styles from '../../static/editor.css'
 
 export default class Editor extends Component {
   constructor(props) {
@@ -9,12 +9,12 @@ export default class Editor extends Component {
   }
   render() {
     return (
-      <div className="editor-wrap">
-        <div className="editor-ctrl">
+      <div className={styles.editorWrap}>
+        <div className={styles.editorCtrl}>
           <span draggable="true" onClick={() => document.execCommand('bold')}>B</span>
         </div>
         <div
-          className="editor-content"
+          className={styles.editorContent}
           contentEditable="true"
           spellCheck="false"
           ref={n => this.content = n}

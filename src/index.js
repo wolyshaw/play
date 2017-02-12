@@ -11,8 +11,6 @@ import Home from './components/home'
 import Post from './containers/Post'
 import './static/common.css'
 import './static/index.css'
-import './static/post.css'
-import 'HommilyEditor/css/RichEditor.css'
 let appStore = createStore(
 	store,
 	applyMiddleware(thunk)

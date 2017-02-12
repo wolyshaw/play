@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {apiFetch} from '../../util/util'
 import {getPost} from '../../actions/posts'
+import styles from '../../static/post.css'
 
 class Post extends Component {
   constructor(props) {
@@ -28,10 +29,10 @@ class Post extends Component {
     let {params} = this.props
     let {title, summary, content} = this.state.post
     return (
-      <div className="post-warp">
+      <div className={styles.postWarp}>
         <article className="w-article">
           <header className="w-article-header clearfix"><h3>{title}</h3></header>
-          <div className="w-article-content" dangerouslySetInnerHTML={{__html: content}}></div>
+          <div className={styles.articleContent} dangerouslySetInnerHTML={{__html: content}}></div>
         </article>
       </div>
     )

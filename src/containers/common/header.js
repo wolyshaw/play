@@ -4,6 +4,7 @@ import {connect} from 'react-redux'
 import {showLogin, hideLogin} from '../../actions/popup/login'
 import {showReg, hideReg} from '../../actions/popup/reg'
 import {userInfo, logout} from '../../actions/common/user'
+import styles from '../../static/header.css'
 
 const mapStateToProps = state => {
   return ({
@@ -14,8 +15,8 @@ const mapStateToProps = state => {
 const LoginBox = props => {
   let {dispatch} = props
   return (
-    <div className="right">
-      <div className="login-btn">
+    <div className={styles.right}>
+      <div className={styles.loginBtn}>
         <a onClick={() => dispatch(showLogin())}>登录</a>
         <span>|</span>
         <a onClick={() => dispatch(showReg())}>注册</a>
@@ -27,8 +28,8 @@ const LoginBox = props => {
 const UserInfo = props => {
   let {user, dispatch} = props
   return (
-    <div className="right">
-      <div className="login-btn">
+    <div className={styles.right}>
+      <div className={styles.loginBtn}>
         <img src={user.avatar}/>
         <Link to={'/user/' + user._id}>{user.nice_name}</Link>
         <span>|</span>
@@ -50,9 +51,9 @@ class Header extends Component {
   render() {
     let {posts, dispatch, common} = this.props
     return (
-      <header className="header clearfix">
-        <div className="logo"><Link to="/">wolyshaw</Link></div>
-        <nav className='clearfix'>
+      <header className={styles.header}>
+        <div className={styles.logo}><Link to="/">wolyshaw</Link></div>
+        <nav className={styles.clearfix}>
           <Link to="/">首页</Link>
           <Link to="/add">新增文章</Link>
         </nav>

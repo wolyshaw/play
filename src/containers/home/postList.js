@@ -4,6 +4,7 @@ import {getPosts} from '../../actions/posts'
 import setHint from '../../actions/common/hint'
 import NextPost from '../../components/home/nextPost'
 import Posts from '../../components/home/posts'
+import styles from '../../static/posts.css'
 
 let mapStateToProps = state => {
   return ({
@@ -23,7 +24,7 @@ class PostsList extends Component {
   render() {
     let {posts, dispatch} = this.props
     return (
-      <div className="w-comwidth w-marginauto">
+      <div className={styles.home}>
         <Posts posts={posts}/>
         {
           // <NextPost next={() => dispatch(getPosts())}/>

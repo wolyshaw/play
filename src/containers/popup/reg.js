@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import setHint from '../../actions/common/hint'
 import {showReg, toReg} from '../../actions/popup/reg'
+import styles from '../../static/popup.css'
 
 let regData = {
   nice_name: undefined,
@@ -47,19 +48,19 @@ class Reg extends Component {
   render() {
     let {submit, reg, hideReg} = this.props
     return (
-      <div className={'w_popup reg' + (reg.isShow ? ' w_popup_show' : '')}>
-        <span className="close" onClick={() => hideReg()}>关闭</span>
-        <form className="w-form" onSubmit={e => this.submitReg(e)}>
-          <label className="w-label clearfix">
-            <span className="w-span">昵称：</span><input className="w-input" ref={nice_name => regData.nice_name = nice_name} type="text" />
+      <div className={styles.popup + (reg.isShow ? ' ' + styles.popupShow : '')}>
+        <span className={styles.close} onClick={() => hideReg()}>关闭</span>
+        <form className={styles.form} onSubmit={e => this.submitReg(e)}>
+          <label className={styles.label}>
+            <span className={styles.span}>昵称：</span><input className={styles.input} ref={nice_name => regData.nice_name = nice_name} type="text" />
           </label>
-          <label className="w-label clearfix">
-            <span className="w-span">密码：</span><input className="w-input" ref={password => regData.password = password} type="password" />
+          <label className={styles.label}>
+            <span className={styles.span}>密码：</span><input className={styles.input} ref={password => regData.password = password} type="password" />
           </label>
-          <label className="w-label clearfix">
-            <span className="w-span">邮箱：</span><input className="w-input" ref={email => regData.email = email} type="email" />
+          <label className={styles.label}>
+            <span className={styles.span}>邮箱：</span><input className={styles.input} ref={email => regData.email = email} type="email" />
           </label>
-          <input type="submit" className="w-button  w-submit" value="提交" />
+          <input type="submit" className={styles.submit} value="提交" />
         </form>
       </div>
     )

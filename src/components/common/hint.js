@@ -1,9 +1,10 @@
 import React from 'react'
+import styles from '../../static/common.css'
 
 let Hint = (props) => {
   let {message, delay, show} = props
   return (
-    <div className="w-hint-warp" style={{display: show ? 'block' : 'none'}}>{message}</div>
+    <div className={styles.hintWarp + ' ' + (show ? styles.hintWarpShow : '')}>{message}</div>
   )
 }
 

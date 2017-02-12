@@ -1,13 +1,14 @@
 import React from 'react'
+import styles from '../../static/common.css'
 
 let Loading = props => {
   let {show} = props
   return (
-    <div className={'w-loading-warp' + (show ? ' w-loading-show': '')}>
-      <div className="w-loading">
-        <span className="w-loading-f"></span>
-        <span className="w-loading-s"></span>
-        <span className="w-loading-t"></span>
+    <div className={styles.loadingWarp + (show ? ' ' + styles.loadingShow: '')}>
+      <div className={styles.loading}>
+        <span className={styles.loadingF}></span>
+        <span className={styles.loadingS}></span>
+        <span className={styles.loadingT}></span>
       </div>
     </div>
   )

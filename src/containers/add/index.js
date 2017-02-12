@@ -5,11 +5,12 @@ import {createPost} from '../../actions/posts'
 import {showLogin} from '../../actions/popup/login'
 import {showReg} from '../../actions/popup/reg'
 import Editor from '../../components/common/editor'
+import styles from '../../static/add.css'
 
 const LoginInfoHint = props => {
   let {dispatch} = props
   return (
-    <div className="w-login-hint">
+    <div className={styles.loginHint}>
       <p>您暂未登录，<a onClick={() => dispatch(showLogin())}>登录</a>或<a onClick={() => dispatch(showReg())}>注册</a>后继续操作。</p>
     </div>
   )
@@ -23,7 +24,7 @@ const AddPost = props => {
     tags: undefined,
     ctegory: undefined
   }
-  let editor
+  let editor, form
   let submiutPost = e => {
     e.preventDefault()
     if (!postData.title.value.trim()) {
@@ -42,16 +43,19 @@ const AddPost = props => {
       title: postData.title.value.trim(),
       content: encodeURIComponent(editor.content.innerHTML.trim()),
       summary: postData.summary.value.trim(),
-      success: r => console.log(r)
+      success: r => {
+        form.reset()
+        editor.innerHTML = ''
+      }
     }))
   }
 
   return (
-    <form className="w-form w-add-post-form" onSubmit={e => submiutPost(e)}>
-      <input className="w-input" type="text" ref={title => postData.title = title} placeholder="标题"/>
-      <textarea className="w-textarea w-summary" ref={summary => postData.summary = summary} placeholder="摘要"></textarea>
+    <form ref={n => form = n} className={styles.addForm} onSubmit={e => submiutPost(e)}>
+      <input className={styles.input} type="text" ref={title => postData.title = title} placeholder="标题"/>
+      <textarea className={styles.textarea} ref={summary => postData.summary = summary} placeholder="摘要"></textarea>
       <Editor ref={n => editor = n}  placeholder="内容"/>
-      <input className="w-submit w-button" type="submit" value="submit"/>
+      <input className={styles.submit} type="submit" value="提交"/>
     </form>
   )
 }
@@ -68,7 +72,7 @@ class Add extends Component {
   render() {
     let {dispatch, user} = this.props
     return (
-      <div className="w-pagewidth w-marginauto">
+      <div className={styles.addWrap}>
         {user ? <AddPost dispatch={dispatch}/> : <LoginInfoHint dispatch={dispatch}/>}
       </div>
     )

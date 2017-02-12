@@ -1,0 +1,45 @@
+.header{
+  width: 100%;
+  height: 60px;
+  line-height: 60px;
+  padding: 0 15px;
+}
+.header > *{
+  display: block;
+  height: 100%;
+  line-height: inherit;
+}
+.header > .logo{
+  float: left;
+  margin-right: 120px;
+}
+.header > nav{
+  float: left;
+}
+.header > nav > a{
+  display: inline-block;
+  float: left;
+  margin: 0 15px;
+}
+.header > .right{
+  float: right;
+}
+.header > .right > .login-btn{
+  height: 100%;
+  line-height: inherit;
+}
+.header > .right > .login-btn > img{
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  vertical-align: middle;
+  border-radius: 100%;
+}
+.header > .right > .login-btn > span{
+  display: inline-block;
+  margin: 0 5px;
+}
+.header > .right > .login-btn > a{
+  cursor: pointer;
+}

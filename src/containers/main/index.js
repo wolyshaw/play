@@ -28,7 +28,9 @@ let Main = props => {
       <Popup/>
       <Loading show={loadingShow}/>
       <Hint message={message} status={status} delay={delay} show={hintShow}/>
-      <Footer year="2017"/>
+      {
+        // <Footer year="2017"/>
+      }
     </div>
   )
 }

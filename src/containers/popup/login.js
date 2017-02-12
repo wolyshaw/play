@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import setHint from '../../actions/common/hint'
 import {showLogin, toLogin} from '../../actions/popup/login'
+import styles from '../../static/popup.css'
 
 let loginData = {
   nice_name: undefined,
@@ -40,16 +41,16 @@ class Login extends Component {
   render() {
     let {login, hideLogin} = this.props
     return (
-      <div className={'w_popup login' + (login.isShow ? ' w_popup_show' : '')}>
-        <span className="close" onClick={() => hideLogin()}>关闭</span>
-        <form className="w-form" onSubmit={e => this.submitLogin(e)}>
-          <label className="w-label clearfix">
-            <span className="w-span">昵称：</span><input className="w-input" ref={nice_name => loginData.nice_name = nice_name} type="text" />
+      <div className={styles.popup + (login.isShow ? ' ' + styles.popupShow : '')}>
+        <span className={styles.close} onClick={() => hideLogin()}>关闭</span>
+        <form className={styles.form} onSubmit={e => this.submitLogin(e)}>
+          <label className={styles.label}>
+            <span className={styles.span}>昵称：</span><input className={styles.input} ref={nice_name => loginData.nice_name = nice_name} type="text" />
           </label>
-          <label className="w-label clearfix">
-            <span className="w-span">密码：</span><input className="w-input" ref={password => loginData.password = password} type="password" />
+          <label className={styles.label}>
+            <span className={styles.span}>密码：</span><input className={styles.input} ref={password => loginData.password = password} type="password" />
           </label>
-          <input type="submit" className="w-button  w-submit" value="提交" />
+          <input type="submit" className={styles.submit} value="提交" />
         </form>
       </div>
     )
