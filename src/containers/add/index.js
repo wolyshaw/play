@@ -4,6 +4,7 @@ import setHint from '../../actions/common/hint'
 import {createPost} from '../../actions/posts'
 import {showLogin} from '../../actions/popup/login'
 import {showReg} from '../../actions/popup/reg'
+import Editor from '../../components/common/editor'
 
 const LoginInfoHint = props => {
   let {dispatch} = props
@@ -18,12 +19,11 @@ const AddPost = props => {
   let {dispatch} = props
   let postData = {
     title: undefined,
-    content: undefined,
     summary: undefined,
     tags: undefined,
     ctegory: undefined
   }
-
+  let editor
   let submiutPost = e => {
     e.preventDefault()
     if (!postData.title.value.trim()) {
@@ -32,7 +32,7 @@ const AddPost = props => {
       }))
       return
     }
-    if (!postData.content.value.trim()) {
+    if (!editor.content.innerHTML.trim()) {
       dispatch(setHint({
         message: '文章内容必填'
       }))
@@ -40,7 +40,7 @@ const AddPost = props => {
     }
     dispatch(createPost({
       title: postData.title.value.trim(),
-      content: postData.content.value.trim(),
+      content: encodeURIComponent(editor.content.innerHTML.trim()),
       summary: postData.summary.value.trim(),
       success: r => console.log(r)
     }))
@@ -50,7 +50,7 @@ const AddPost = props => {
     <form className="w-form w-add-post-form" onSubmit={e => submiutPost(e)}>
       <input className="w-input" type="text" ref={title => postData.title = title} placeholder="标题"/>
       <textarea className="w-textarea w-summary" ref={summary => postData.summary = summary} placeholder="摘要"></textarea>
-      <textarea className="w-textarea w-content"ref={content => postData.content = content} placeholder="内容"></textarea>
+      <Editor ref={n => editor = n}  placeholder="内容"/>
       <input className="w-submit w-button" type="submit" value="submit"/>
     </form>
   )

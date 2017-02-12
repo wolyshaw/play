@@ -5,7 +5,7 @@ let Footer = props => {
   let {year} = props
   return (
     <footer className="w-footer">
-      <div className="w-marginauto w-comwidth">
+      <div className="w-marginauto w-pagewidth">
         <a href="https://xwlong.com">wolyshaw</a>
       </div>
     </footer>

@@ -14,28 +14,22 @@ export const hideLogin = () => ({
   type: 'hide_login'
 })
 
-export const toLogin = set => {
+export const toLogin = data => {
   return dispatch => {
-    dispatch(setLoading(true))
-    fetch(config.apiHost + '/login', {
-      method: 'post',
-      credentials: 'include',
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded"
+    let set = {
+      url: config.apiHost + '/login',
+      body: {
+        nice_name: data.nice_name,
+        password: data.password
       },
-      body: 'nice_name=' + set.nice_name + '&password=' + set.password
-    })
-      .then(res => res.json())
-      .then(r => {
-        dispatch(setLoading(false))
-        dispatch(setHint({
-          message: r.msg
-        }))
+      success: r => {
         dispatch(hideLogin())
-        return dispatch({
+        dispatch({
           type: 'user_info',
           data: r.data
         })
-      })
+      }
+    }
+    apiFetch(set, dispatch)
   }
 }
