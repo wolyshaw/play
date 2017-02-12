@@ -11,7 +11,7 @@ module.exports = {
   output: {
     filename: 'index.min.js',
     path: path.resolve('./dist'),
-    publicPath: '/'
+    publicPath: '/dist'
   },
   module: {
     loaders: [
