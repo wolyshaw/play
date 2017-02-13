@@ -30,7 +30,7 @@ render(
 		<Router history={browserHistory}>
 			<Route path="/" component={Main}>
 				<IndexRoute component={Home}/>
-				<Route path="/add" getComponent={getPost}/>
+				<Route path="/add" getComponent={getAdd}/>
 				<Route path="/post/:id" getComponent={getPost}/>
 			</Route>
 		</Router>
