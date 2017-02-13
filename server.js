@@ -16,12 +16,13 @@ app.use(webpackDevMiddleware(compiler, {
     colors: true
   }
 }))
+console.log(config)
 app.use(webpackHotMiddleware(compiler))
 let buildDir = 'dist'
 if (config.debug) {
   buildDir = 'dev'
 }
-app.use(express.static(buildDir))
+app.use('dist', express.static(buildDir))
 app.get('*', function(req, res) {
   res.sendFile(path.join(__dirname, buildDir, 'index.html'))
 })

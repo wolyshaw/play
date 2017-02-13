@@ -79,6 +79,6 @@ class Add extends Component {
   }
 }
 
-export default connect(
+module.exports = connect(
   mapStateToProps
 )(Add)

@@ -39,4 +39,4 @@ class Post extends Component {
   }
 }
 
-export default connect()(Post)
+module.exports = connect()(Post)

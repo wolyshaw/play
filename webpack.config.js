@@ -2,16 +2,19 @@ const webpack = require('webpack')
 const path = require('path')
 const config = require('./config')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const CleanPlugin = require("clean-webpack-plugin")
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 
 module.exports = {
   entry: {
-    index: './src/index.js'
+    vendor: ['react', 'react-dom', 'react-router', 'redux', 'react-redux', 'redux-thunk', 'isomorphic-fetch'],
+    bundle: './src/index.js'
   },
   output: {
-    filename: 'index.min.js',
+    filename: '[hash:5].[name].js',
     path: path.resolve('./dist'),
-    publicPath: '/dist'
+    publicPath: '/dist',
+    chunkFilename: '[hash:5].[name].chunk.js'
   },
   module: {
     loaders: [
@@ -30,6 +33,10 @@ module.exports = {
   ]
   },
   plugins: [
+    new CleanPlugin(['dist'], {
+      root: path.join(__dirname),
+      verbose: true
+    }),
 		new HtmlWebpackPlugin({
 			template: path.join(__dirname, 'src', 'static', 'index_default.html'),
 			title: config.site.title,
@@ -38,7 +45,7 @@ module.exports = {
 			header: config.site.header
 		}),
     new ExtractTextPlugin({
-      filename: 'static/play.css',
+      filename: 'static/[hash:5].play.css',
       allChunks: true
     }),
     new webpack.optimize.UglifyJsPlugin({
@@ -50,6 +57,10 @@ module.exports = {
         'process.env': {
             NODE_ENV: '"production"'
         }
+    }),
+    new webpack.optimize.CommonsChunkPlugin({
+      name: 'vendor',
+      minChunks: Infinity
     })
   ]
 }
