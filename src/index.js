@@ -21,7 +21,7 @@ const getAdd = (location, callback) => {
 
 const getPost = (location, callback) => {
 	require.ensure([], require => {
-		callback(null, require('./containers/Post'))
+		callback(null, require('./containers/post'))
 	}, 'post')
 }
 

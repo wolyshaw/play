@@ -22,7 +22,7 @@ let buildDir = 'dist'
 if (config.debug) {
   buildDir = 'dev'
 }
-app.use('dist', express.static(buildDir))
+app.use('/dist', express.static(buildDir))
 app.get('*', function(req, res) {
   res.sendFile(path.join(__dirname, buildDir, 'index.html'))
 })

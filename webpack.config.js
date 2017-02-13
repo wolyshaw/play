@@ -14,7 +14,7 @@ module.exports = {
     filename: '[hash:5].[name].js',
     path: path.resolve('./dist'),
     publicPath: '/dist',
-    chunkFilename: '[hash:5].[name].chunk.js'
+    chunkFilename: '/[hash:5].[name].chunk.js'
   },
   module: {
     loaders: [
