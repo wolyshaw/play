@@ -1,6 +1,8 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {getUser} from '../../actions/common/user'
+import {formatTime} from '../../util/util'
+import styles from '../../static/user.css'
 
 class User extends Component {
   constructor(props) {
@@ -17,7 +19,6 @@ class User extends Component {
   }
 
   componentWillMount() {
-    console.log('gjhghjjh')
     this.props.dispatch(getUser({
       id: this.props.params.id,
       success: this.success.bind(this)
@@ -26,13 +27,19 @@ class User extends Component {
 
   render() {
     let {params} = this.props
-    let {title, summary, content} = this.state.user
+    let {nice_name, avatar, create_at} = this.state.user
     return (
-      <div>
-        User
+      <div className={styles.user}>
+        <div className={styles.infoWrap}>
+          <div className={styles.info}>
+            <img  className={styles.avatar} src={avatar}/>
+            <h3 className={styles.niceName}>{nice_name}</h3>
+            {create_at ? <p className={styles.createAt}>加入时间：{formatTime(create_at)}</p> : ''}
+          </div>
+        </div>
       </div>
     )
   }
 }
 
-export default connect()(User)
+module.exports = connect()(User)
