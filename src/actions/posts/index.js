@@ -1,4 +1,3 @@
-import fetch from 'isomorphic-fetch'
 import config from '../../../config'
 import {apiFetch} from '../../util/util'
 import setLoading from '../common/loading'

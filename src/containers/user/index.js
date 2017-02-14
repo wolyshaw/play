@@ -17,6 +17,7 @@ class User extends Component {
   }
 
   componentWillMount() {
+    console.log('gjhghjjh')
     this.props.dispatch(getUser({
       id: this.props.params.id,
       success: this.success.bind(this)
@@ -28,6 +29,7 @@ class User extends Component {
     let {title, summary, content} = this.state.user
     return (
       <div>
+        User
       </div>
     )
   }

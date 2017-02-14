@@ -53,5 +53,11 @@ export const apiFetch = (set, dispatch) => {
         }
       }
     })
-    .catch(err => console.log(err))
+    .catch(err => {
+      dispatch(setLoading(false))
+      dispatch(setHint({
+        message: '请求错误，请检查网络！'
+      }))
+      throw err
+    })
 }

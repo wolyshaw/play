@@ -1,8 +1,7 @@
 const webpack = require('webpack')
 const path = require('path')
-const config = require('./config_dev')
+const config = require('./config')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-const CleanPlugin = require("clean-webpack-plugin")
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const publicPath = 'http://localhost:' + config.port + '/'
 const hotMiddlewareScript = 'webpack-hot-middleware/client?reload=true'

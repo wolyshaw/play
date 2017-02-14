@@ -4,30 +4,28 @@ import {apiFetch} from '../../util/util'
 
 export const userInfo = r => {
   return dispatch => {
-    fetch(config.apiHost + '/userinfo', {
-      method: 'post',
-      credentials: 'include'
-    })
-      .then(res => res.json())
-      .then(r => dispatch({
+    let set = {
+      url: config.apiHost + '/userinfo',
+      hint: false,
+      success: r => dispatch({
         type: 'user_info',
         data: r.data
       })
-    )
+    }
+    apiFetch(set, dispatch)
   }
 }
 
 export const logout = () => {
   return dispatch => {
-    fetch(config.apiHost + '/logout', {
-      method: 'post',
-      credentials: 'include'
-    })
-      .then(res => res.json())
-      .then(r => dispatch({
+    let set = {
+      url: config.apiHost + '/logout',
+      success: r => dispatch({
         type: 'user_info',
         data: undefined
-      }))
+      })
+    }
+    apiFetch(set, dispatch)
   }
 }
 

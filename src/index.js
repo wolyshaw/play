@@ -25,13 +25,20 @@ const getPost = (location, callback) => {
 	}, 'post')
 }
 
+const getUser = (location, callback) => {
+	require.ensure([], require => {
+		callback(null, require('./containers/user'))
+	}, 'user')
+}
+
 render(
 	<Provider store={appStore}>
 		<Router history={browserHistory}>
 			<Route path="/" component={Main}>
 				<IndexRoute component={Home}/>
-				<Route path="/add" getComponent={getAdd}/>
-				<Route path="/post/:id" getComponent={getPost}/>
+				<Route path="add" getComponent={getAdd}/>
+				<Route path="post/:id" getComponent={getPost}/>
+				<Route path="user/:id" getComponent={getUser}/>
 			</Route>
 		</Router>
 	</Provider>,
