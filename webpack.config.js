@@ -45,7 +45,8 @@ module.exports = {
 			header: config.site.header
 		}),
     new ExtractTextPlugin({
-      filename: 'static/[hash:5].[name].css'
+      filename: 'static/[hash:5].[name].css',
+      allChunks: true
     }),
     new webpack.optimize.UglifyJsPlugin({
       compress: {
