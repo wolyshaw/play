@@ -1,5 +1,4 @@
 import fetch from 'isomorphic-fetch'
-import config from '../../../config'
 import setLoading from '../common/loading'
 import {apiFetch} from '../../util/util'
 import setHint from '../common/hint'
@@ -17,7 +16,7 @@ export const hideLogin = () => ({
 export const toLogin = data => {
   return dispatch => {
     let set = {
-      url: config.apiHost + '/login',
+      url: '/login',
       body: {
         nice_name: data.nice_name,
         password: data.password

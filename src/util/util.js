@@ -24,21 +24,38 @@ export const objToStr = obj => {
   return strArr.join('&')
 }
 
+export const setFromData = form => {
+  let fromData = new FormData()
+
+  for(name in data) {
+    formData.append(name, data[name]);
+  }
+
+  return fromData
+}
+
 export const apiFetch = (set, dispatch) => {
-  let init, setting, isHint
+  let init, setting, isHint,
+    isFormData = set.body instanceof FormData,
+    initHeader = {
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded'
+      }
+    }
   init = {
     method: 'post',
-    credentials: 'include',
-    headers: {
-      "Content-Type": "application/x-www-form-urlencoded"
-    }
+    credentials: 'include'
+  }
+  if (!isFormData) {
+    Object.assign(init, initHeader)
   }
   setting = Object.assign({}, init, {
-    body: objToStr(set.body)
+    body: (isFormData ? set.body : objToStr(set.body))
   })
   isHint = set.hint === undefined ? true : set.hint
   dispatch(setLoading(true))
-  fetch(set.url, setting)
+  console.log(setting)
+  fetch(config.apiHost + set.url, setting)
     .then(res => res.json())
     .then(r => {
       dispatch(setLoading(false))

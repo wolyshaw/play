@@ -34,7 +34,23 @@ export const reg = (state = {isShow: false}, action) => {
   }
 }
 
+export const upload = (state = {isShow: false}, action) => {
+  switch (action.type) {
+    case 'show_upload':
+      return {
+        isShow: true
+      }
+    case 'hide_upload':
+      return {
+        isShow: false
+      }
+    default:
+      return state
+  }
+}
+
 export default combineReducers({
   login,
-  reg
+  reg,
+  upload
 })

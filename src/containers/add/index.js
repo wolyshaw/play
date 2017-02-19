@@ -4,8 +4,10 @@ import setHint from '../../actions/common/hint'
 import {createPost} from '../../actions/posts'
 import {showLogin} from '../../actions/popup/login'
 import {showReg} from '../../actions/popup/reg'
-import Editor from '../../components/common/editor'
+import {showUpload} from '../../actions/popup/upload'
+import Editor from 'react-html-editor'
 import styles from '../../static/add.css'
+import editorStyle from 'react-html-editor/dist/static/editor.css'
 
 const LoginInfoHint = props => {
   let {dispatch} = props
@@ -33,7 +35,7 @@ const AddPost = props => {
       }))
       return
     }
-    if (!editor.content.innerHTML.trim()) {
+    if (!editor.getContent()) {
       dispatch(setHint({
         message: '文章内容必填'
       }))
@@ -41,7 +43,7 @@ const AddPost = props => {
     }
     dispatch(createPost({
       title: postData.title.value.trim(),
-      content: encodeURIComponent(editor.content.innerHTML.trim()),
+      content: editor.getContent(),
       summary: postData.summary.value.trim(),
       success: r => {
         form.reset()
@@ -49,12 +51,16 @@ const AddPost = props => {
       }
     }))
   }
+// () => editor.setImage('https://dn-abcdea.qbox.me/1/1.png')
+  let setUpload = () => {
+    dispatch(showUpload())
+  }
 
   return (
     <form ref={n => form = n} className={styles.addForm} onSubmit={e => submiutPost(e)}>
       <input className={styles.input} type="text" ref={title => postData.title = title} placeholder="标题"/>
       <textarea className={styles.textarea} ref={summary => postData.summary = summary} placeholder="摘要"></textarea>
-      <Editor ref={n => editor = n}  placeholder="内容"/>
+      <Editor ref={n => editor = n} classObject={editorStyle} setImage={() => setUpload()}/>
       <input className={styles.submit} type="submit" value="提交"/>
     </form>
   )

@@ -1,11 +1,10 @@
-import config from '../../../config'
 import {apiFetch} from '../../util/util'
 import setLoading from '../common/loading'
 
 export const getPosts = data => {
   return dispatch => {
     let set = {
-      url: config.apiHost + '/get/posts',
+      url: '/get/posts',
       hint: false,
       success: r => {
         dispatch({
@@ -21,7 +20,7 @@ export const getPosts = data => {
 export const createPost = data => {
   return dispatch => {
     let set = {
-      url: config.apiHost + '/post/post',
+      url: '/post/post',
       body: {
         title: data.title,
         content: data.content,
@@ -36,7 +35,7 @@ export const createPost = data => {
 export const getPost = data => {
   return dispatch => {
     let set = {
-      url: config.apiHost + '/get/post',
+      url: '/get/post',
       body: {
         id: data.id
       },
