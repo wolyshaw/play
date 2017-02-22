@@ -43,3 +43,25 @@
   composes: submit from './common.css';
   composes: button from './common.css';
 }
+.upload{
+  width: 660px;
+  margin: auto;
+}
+.upload .text{
+  text-align: center;
+  font-size: 24px;
+  display: block;
+  cursor: pointer;
+  border-radius: 10px;
+  padding: 40px 0;
+  border: 5px dashed rgba(0, 0, 0, .15);
+}
+.upload .file{
+  width: 0;
+  height: 0;
+  opacity: 0;
+}
+.upload .submit{
+  width: 100%;
+  margin-top: 20px;
+}

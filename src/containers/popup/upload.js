@@ -4,6 +4,7 @@ import {connect} from 'react-redux'
 import setHint from '../../actions/common/hint'
 import {getToken} from '../../actions/popup/upload'
 import styles from '../../static/popup.css'
+import {fileSize} from '../../util/util'
 
 let form, file
 
@@ -11,21 +12,21 @@ class Upload extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      token: ''
+      token: '',
+      filename: '选择图片'
     }
   }
 
-  // componentWillMount() {
-  //   this.props.dispatch(
-  //     getToken({
-  //       success: r => console.log(r)
-  //     })
-  //   )
-  // }
+  changeFile() {
+    let {name, size, type} = file.files[0]
+    console.log(fileSize(size))
+    this.setState({
+      filename: name
+    })
+  }
 
   formSubmit(e) {
     e.preventDefault()
-    console.log(file.files[0])
     let formData = new FormData()
     formData.append('file', file.files[0])
     formData.append('name', 'name')
@@ -34,20 +35,36 @@ class Upload extends Component {
         body: formData,
         success: r => {
           form.reset()
-          console.log(r)
         }
       })
     )
   }
 
   render() {
-    let {upload, hideUpload} = this.props
+    let {upload, hideUpload} = this.props,
+      popupClass = styles.popup + (upload.isShow ? ' ' + styles.popupShow : '')
     return (
-      <div className={styles.popup + (upload.isShow ? ' ' + styles.popupShow : '')}>
-        <span className={styles.close} onClick={() => hideUpload()}>关闭</span>
-        <form ref={n => form = n} onSubmit={e => this.formSubmit(e)}>
-          <label><span>选择图片</span><input type="file" ref={n => file = n} /></label>
-          <input type="submit" value="submit"/>
+      <div className={popupClass}>
+        <span
+          className={styles.close}
+          onClick={() => hideUpload()}
+        >关闭</span>
+        <form
+          className={styles.upload}
+          ref={n => form = n}
+          onSubmit={e => this.formSubmit(e)}
+        >
+          <label className={styles.text}>
+            <span>{this.state.filename}</span>
+            <input
+              className={styles.file}
+              type="file"
+              onChange={this.changeFile.bind(this)}
+              ref={n => file = n}
+              required
+            />
+          </label>
+          <input className={styles.submit} type="submit" value="submit"/>
         </form>
       </div>
     )

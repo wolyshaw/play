@@ -34,6 +34,25 @@ export const setFromData = form => {
   return fromData
 }
 
+export const fileSize = size => {
+  size = Math.floor(size)
+
+  if (size < 1000) {
+
+    return Math.floor(size) + 'B'
+
+  } else if (size >= 1000 && size < 1000000) {
+
+    return Math.floor(size / 1000) + 'KB'
+
+  } else {
+
+    return Math.floor(size / 1000000) + 'MB'
+
+  }
+
+}
+
 export const apiFetch = (set, dispatch) => {
   let init, setting, isHint,
     isFormData = set.body instanceof FormData,
