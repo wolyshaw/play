@@ -51,7 +51,7 @@ const AddPost = props => {
       }
     }))
   }
-// () => editor.setImage('https://dn-abcdea.qbox.me/1/1.png')
+  
   let setUpload = () => {
     dispatch(showUpload())
   }

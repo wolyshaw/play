@@ -54,7 +54,6 @@ export const apiFetch = (set, dispatch) => {
   })
   isHint = set.hint === undefined ? true : set.hint
   dispatch(setLoading(true))
-  console.log(setting)
   fetch(config.apiHost + set.url, setting)
     .then(res => res.json())
     .then(r => {
