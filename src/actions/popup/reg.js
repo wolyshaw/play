@@ -22,10 +22,7 @@ export const toReg = data => {
         password: data.password,
         email: data.email
       },
-      success: r => dispatch({
-        type: 'user_info',
-        data: r.data
-      })
+      success: data.success
     }
     apiFetch(set, dispatch)
   }

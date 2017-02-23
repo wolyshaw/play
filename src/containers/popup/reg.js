@@ -38,11 +38,17 @@ class Reg extends Component {
     this.props.dispatch(toReg({
       nice_name: regData.nice_name.value.trim(),
       password: regData.password.value.trim(),
-      email: regData.email.value.trim()
+      email: regData.email.value.trim(),
+      success: r => {
+        dispatch({
+          type: 'user_info',
+          data: r.data
+        })
+        regData.nice_name.value = ''
+        regData.password.value = ''
+        regData.email.value = ''
+      }
     }))
-    regData.nice_name.value = ''
-    regData.password.value = ''
-    regData.email.value = ''
   }
 
   render() {
@@ -52,13 +58,16 @@ class Reg extends Component {
         <span className={styles.close} onClick={() => hideReg()}>关闭</span>
         <form className={styles.form} onSubmit={e => this.submitReg(e)}>
           <label className={styles.label}>
-            <span className={styles.span}>昵称：</span><input className={styles.input} ref={nice_name => regData.nice_name = nice_name} type="text" />
+            <span className={styles.span}>昵称：</span>
+            <input className={styles.input} ref={nice_name => regData.nice_name = nice_name} type="text" />
           </label>
           <label className={styles.label}>
-            <span className={styles.span}>密码：</span><input className={styles.input} ref={password => regData.password = password} type="password" />
+            <span className={styles.span}>密码：</span>
+            <input className={styles.input} ref={password => regData.password = password} type="password" />
           </label>
           <label className={styles.label}>
-            <span className={styles.span}>邮箱：</span><input className={styles.input} ref={email => regData.email = email} type="email" />
+            <span className={styles.span}>邮箱：</span>
+            <input className={styles.input} ref={email => regData.email = email} type="email" />
           </label>
           <input type="submit" className={styles.submit} value="提交" />
         </form>
