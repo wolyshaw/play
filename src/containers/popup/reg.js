@@ -8,7 +8,8 @@ let regData = {
   nice_name: undefined,
   password: undefined,
   email: undefined
-}
+},
+regForm
 
 class Reg extends Component {
   constructor(props) {
@@ -40,13 +41,11 @@ class Reg extends Component {
       password: regData.password.value.trim(),
       email: regData.email.value.trim(),
       success: r => {
-        dispatch({
+        this.props.dispatch({
           type: 'user_info',
           data: r.data
         })
-        regData.nice_name.value = ''
-        regData.password.value = ''
-        regData.email.value = ''
+        regForm.reset()
       }
     }))
   }
@@ -56,7 +55,7 @@ class Reg extends Component {
     return (
       <div className={styles.popup + (reg.isShow ? ' ' + styles.popupShow : '')}>
         <span className={styles.close} onClick={() => hideReg()}>关闭</span>
-        <form className={styles.form} onSubmit={e => this.submitReg(e)}>
+        <form ref={n => regForm = n} className={styles.form} onSubmit={e => this.submitReg(e)}>
           <label className={styles.label}>
             <span className={styles.span}>昵称：</span>
             <input className={styles.input} ref={nice_name => regData.nice_name = nice_name} type="text" />

@@ -7,7 +7,8 @@ import styles from '../../static/popup.css'
 let loginData = {
   nice_name: undefined,
   password: undefined
-}
+},
+loginForm
 
 const mapStateToProps = state => ({})
 
@@ -32,10 +33,16 @@ class Login extends Component {
     }
     this.props.dispatch(toLogin({
       nice_name: loginData.nice_name.value.trim(),
-      password: loginData.password.value.trim()
+      password: loginData.password.value.trim(),
+      success: r => {
+        loginForm.reset()
+        this.props.dispatch({
+          type: 'user_info',
+          data: r.data
+        })
+        this.props.hideLogin()
+      }
     }))
-    loginData.nice_name.value = ''
-    loginData.password.value = ''
   }
 
   render() {
@@ -43,7 +50,7 @@ class Login extends Component {
     return (
       <div className={styles.popup + (login.isShow ? ' ' + styles.popupShow : '')}>
         <span className={styles.close} onClick={() => hideLogin()}>关闭</span>
-        <form className={styles.form} onSubmit={e => this.submitLogin(e)}>
+        <form ref={n => loginForm = n} className={styles.form} onSubmit={e => this.submitLogin(e)}>
           <label className={styles.label}>
             <span className={styles.span}>昵称：</span><input className={styles.input} ref={nice_name => loginData.nice_name = nice_name} type="text" />
           </label>

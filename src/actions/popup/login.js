@@ -21,13 +21,7 @@ export const toLogin = data => {
         nice_name: data.nice_name,
         password: data.password
       },
-      success: r => {
-        dispatch(hideLogin())
-        dispatch({
-          type: 'user_info',
-          data: r.data
-        })
-      }
+      success: data.success
     }
     apiFetch(set, dispatch)
   }

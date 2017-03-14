@@ -15,11 +15,11 @@ class Upload extends Component {
       token: '',
       filename: '选择图片'
     }
+    this.getUrl = ''
   }
 
   changeFile() {
     let {name, size, type} = file.files[0]
-    console.log(fileSize(size))
     this.setState({
       filename: name
     })
@@ -35,6 +35,11 @@ class Upload extends Component {
         body: formData,
         success: r => {
           form.reset()
+          this.setState({
+            filename: '选择图片'
+          })
+          this.getUrl = 'url'
+          this.props.hideUpload()
         }
       })
     )
