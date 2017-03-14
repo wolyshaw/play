@@ -51,7 +51,7 @@ const AddPost = props => {
       }
     }))
   }
-  
+
   let setUpload = () => {
     dispatch(showUpload())
   }

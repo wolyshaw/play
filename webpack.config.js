@@ -37,13 +37,13 @@ module.exports = {
       root: path.join(__dirname),
       verbose: true
     }),
-		new HtmlWebpackPlugin({
-			template: path.join(__dirname, 'src', 'static', 'index_default.html'),
-			title: config.site.title,
-			keywords: config.site.keywords,
-			description: config.site.description,
-			header: config.site.header
-		}),
+    new HtmlWebpackPlugin({
+      template: path.join(__dirname, 'src', 'static', 'index_default.html'),
+      title: config.site.title,
+      keywords: config.site.keywords,
+      description: config.site.description,
+      header: config.site.header
+    }),
     new ExtractTextPlugin({
       filename: 'static/[hash:5].[name].css',
       allChunks: true

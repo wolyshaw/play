@@ -6,32 +6,32 @@
 
 }
 .article{
-	padding: 0 10px;
-	margin: 30px auto;
+  padding: 0 10px;
+  margin: 30px auto;
   composes: clearfix from './common.css';
 }
 .header span{
-	display: inline-block;
-	padding: 3px 5px;
-	margin-right: 5px;
-	background-color: #e8edf2;
-	border-radius: 2px;
-	float: left;
-	font-size: 12px;
+  display: inline-block;
+  padding: 3px 5px;
+  margin-right: 5px;
+  background-color: #e8edf2;
+  border-radius: 2px;
+  float: left;
+  font-size: 12px;
 }
 .header h3{
-	font-size: 18px;
-	color: #333;
-	font-weight: normal;
-	display: inline-block;
+  font-size: 18px;
+  color: #333;
+  font-weight: normal;
+  display: inline-block;
 }
 .content p{
-	color: #999;
-	font-size: 14px;
-	line-height: 1.8;
-	padding: 10px 0;
+  color: #999;
+  font-size: 14px;
+  line-height: 1.8;
+  padding: 10px 0;
 }
 .footer{
-	color: #999;
-	font-size: 14px;
+  color: #999;
+  font-size: 14px;
 }

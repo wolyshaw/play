@@ -37,12 +37,12 @@ module.exports = {
       filename: 'static/play.css',
       allChunks: true
     }),
-		new HtmlWebpackPlugin({
-			template: path.join(__dirname, 'src', 'static', 'index_default.html'),
-			title: config.site.title,
-			keywords: config.site.keywords,
-			description: config.site.description,
-			header: config.site.header
-		}),
+    new HtmlWebpackPlugin({
+      template: path.join(__dirname, 'src', 'static', 'index_default.html'),
+      title: config.site.title,
+      keywords: config.site.keywords,
+      description: config.site.description,
+      header: config.site.header
+    }),
   ]
 }
