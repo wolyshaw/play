@@ -1,13 +1,21 @@
 import React from 'react'
-import {connect} from 'react-redux'
-import setHint from '../../actions/common/hint'
-import Hint from '../../components/common/hint'
-import Header from '../common/header'
-import Loading from '../../components/common/loading'
-import Footer from '../../components/common/footer'
-import Popup from '../popup'
+import { connect } from 'react-redux'
+import { Router } from 'react-router'
+import { Route, Link } from 'react-router-dom'
+import createHistory from 'history/createBrowserHistory'
 
-let mapStateToProps = state => {
+import setHint from 'actions/common/hint'
+import Hint from 'components/common/hint'
+import Header from 'components/common/header'
+import Loading from 'components/common/loading'
+import Footer from 'components/common/footer'
+import Popup from 'containers/popup'
+
+import { getAdd, getPost, getUser } from 'util/getComponent'
+
+const history = createHistory()
+
+const mapStateToProps = state => {
   return ({
     common: state.common,
     popup: state.popup,
@@ -20,18 +28,23 @@ let mapStateToProps = state => {
 }
 
 let Main = props => {
-  let {hintShow, children, message, delay, status, loadingShow, common, popup} = props
+  let {
+        hintShow,
+        children,
+        message,
+        delay,
+        status,
+        loadingShow,
+        common,
+        popup
+      } = props
+
   return (
-    <div>
-      <Header common={common}/>
-      {children}
-      <Popup/>
-      <Loading show={loadingShow}/>
-      <Hint message={message} status={status} delay={delay} show={hintShow}/>
-      {
-        // <Footer year="2017"/>
-      }
-    </div>
+    <Router>
+      <div>
+        <Route path={ '/' } exact getComponent={ getAdd }/>
+      </div>
+    </Router>
   )
 }
 

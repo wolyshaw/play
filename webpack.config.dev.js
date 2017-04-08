@@ -25,18 +25,31 @@ module.exports = {
       {
         test: /\.css$/,
         loader: ExtractTextPlugin.extract({
-          fullbackLoader: 'style-loader',
-          loader: ['css-loader?modules&localIdentName=[name]--[local]--[hash:base64:5]']
+          fallback: 'style-loader',
+          use: ['css-loader?modules&localIdentName=[name]--[local]--[hash:base64:5]']
         })
+      },
+      {
+        test: /\.(jpg|png|gif)$/,
+        loader: 'url-loader',
+        query: {
+          limit: 8192,
+          name: '[name].[ext]'
+        }
       }
     ]
   },
+  resolve: {
+    alias: {
+      util: path.resolve(path.join(__dirname, 'src', 'util')),
+      static: path.resolve(path.join(__dirname, 'src', 'static')),
+      actions: path.resolve(path.join(__dirname, 'src', 'actions')),
+      containers: path.resolve(path.join(__dirname, 'src', 'containers')),
+      components: path.resolve(path.join(__dirname, 'src', 'components'))
+    }
+  },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
-    new ExtractTextPlugin({
-      filename: 'static/play.css',
-      allChunks: true
-    }),
     new HtmlWebpackPlugin({
       template: path.join(__dirname, 'src', 'static', 'index_default.html'),
       title: config.site.title,
@@ -44,5 +57,6 @@ module.exports = {
       description: config.site.description,
       header: config.site.header
     }),
+    new ExtractTextPlugin('static/play.css')
   ]
 }

@@ -7,7 +7,7 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin')
 
 module.exports = {
   entry: {
-    vendor: ['react', 'react-dom', 'react-router', 'react-router-dom', 'react-router-redux', 'redux', 'react-redux', 'redux-thunk', 'isomorphic-fetch'],
+    vendor: ['react', 'history', 'react-dom', 'react-router', 'react-router-dom', 'react-router-redux', 'redux', 'react-redux', 'redux-thunk', 'isomorphic-fetch'],
     bundle: './src/index.js'
   },
   output: {
@@ -19,18 +19,35 @@ module.exports = {
   module: {
     loaders: [
       {
-      test: /\.js$/,
-      exclude: /node_modules/,
-      loader: 'babel-loader?presets[]=es2015&presets[]=react'
-    },
-    {
-      test: /\.css$/,
-      loader: ExtractTextPlugin.extract({
-        fullbackLoader: 'style-loader',
-        loader: ['css-loader?modules&localIdentName=[name]--[local]--[hash:base64:5]']
-      })
+        test: /\.js$/,
+        exclude: /node_modules/,
+        loader: 'babel-loader?presets[]=es2015&presets[]=react'
+      },
+      {
+        test: /\.css$/,
+        loader: ExtractTextPlugin.extract({
+          fullback: 'style-loader',
+          loader: ['css-loader?modules&localIdentName=[name]--[local]--[hash:base64:5]']
+        })
+      },
+      {
+        test: /\.(jpg|png|gif)$/,
+        loader: 'url-loader',
+        query: {
+          limit: 8192,
+          name: '[name].[ext]'
+        }
+      }
+    ]
+  },
+  resolve: {
+    alias: {
+      util: path.resolve(path.join(__dirname, 'src', 'util')),
+      static: path.resolve(path.join(__dirname, 'src', 'static')),
+      actions: path.resolve(path.join(__dirname, 'src', 'actions')),
+      containers: path.resolve(path.join(__dirname, 'src', 'containers')),
+      components: path.resolve(path.join(__dirname, 'src', 'components'))
     }
-  ]
   },
   plugins: [
     new CleanPlugin(['dist'], {
