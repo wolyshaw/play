@@ -7,7 +7,7 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin')
 
 module.exports = {
   entry: {
-    vendor: ['react', 'react-dom', 'react-router', 'redux', 'react-redux', 'redux-thunk', 'isomorphic-fetch'],
+    vendor: ['react', 'react-dom', 'react-router', 'react-router-dom', 'react-router-redux', 'redux', 'react-redux', 'redux-thunk', 'isomorphic-fetch'],
     bundle: './src/index.js'
   },
   output: {
