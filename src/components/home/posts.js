@@ -1,6 +1,7 @@
 import React from 'react'
-import PostItem from './postItem'
-import styles from '../../static/posts.css'
+
+import PostItem from 'components/home/postItem'
+import styles from 'static/posts.css'
 
 let Posts = props => {
   let {posts} = props,

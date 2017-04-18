@@ -20,8 +20,6 @@ const appStore = createStore(
   applyMiddleware(...middleware)
 )
 
-
-
 render(
   <Provider store={appStore}>
     <Main/>

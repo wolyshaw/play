@@ -1,7 +1,7 @@
 import config from '../../config'
 import fetch from 'isomorphic-fetch'
-import setLoading from '../actions/common/loading'
-import setHint from '../actions/common/hint'
+import setLoading from 'actions/common/loading'
+import setHint from 'actions/common/hint'
 
 export const formatTime = time => {
   let depositTime = new Date(time),
@@ -72,16 +72,24 @@ export const apiFetch = (set, dispatch) => {
     body: (isFormData ? set.body : objToStr(set.body))
   })
   isHint = set.hint === undefined ? true : set.hint
-  dispatch(setLoading(true))
+
+  if (dispatch) {
+    dispatch(setLoading(true))
+  }
+
   fetch(config.apiHost + set.url, setting)
-    .then(res => res.json())
-    .then(r => {
-      dispatch(setLoading(false))
-      if (isHint && dispatch) {
-        dispatch(setHint({
-          message: r.msg
-        }))
+    .then(res => {
+      if (dispatch) {
+        dispatch(setLoading(false))
+        if (isHint) {
+          dispatch(setHint({
+            message: r.msg
+          }))
+        }
       }
+      return res.json()
+    })
+    .then(r => {
       if (r.code === 200) {
         if (set.success && typeof set.success === 'function') {
           set.success(r)
@@ -89,10 +97,12 @@ export const apiFetch = (set, dispatch) => {
       }
     })
     .catch(err => {
-      dispatch(setLoading(false))
-      dispatch(setHint({
-        message: '请求错误，请检查网络！'
-      }))
+      if (dispatch) {
+        dispatch(setLoading(false))
+        dispatch(setHint({
+          message: '请求错误，请检查网络！'
+        }))
+      }
       throw err
     })
 }

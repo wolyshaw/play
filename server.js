@@ -16,7 +16,7 @@ app.use(webpackDevMiddleware(compiler, {
     colors: true
   }
 }))
-console.log(config)
+
 app.use(webpackHotMiddleware(compiler))
 let buildDir = 'dist'
 if (config.debug) {

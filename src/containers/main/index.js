@@ -4,14 +4,7 @@ import { Router } from 'react-router'
 import { Route, Link } from 'react-router-dom'
 import createHistory from 'history/createBrowserHistory'
 
-import setHint from 'actions/common/hint'
-import Hint from 'components/common/hint'
 import Header from 'components/common/header'
-import Loading from 'components/common/loading'
-import Footer from 'components/common/footer'
-import Popup from 'containers/popup'
-
-import { getAdd, getPost, getUser } from 'util/getComponent'
 
 const history = createHistory()
 
@@ -27,22 +20,29 @@ const mapStateToProps = state => {
   })
 }
 
+const Test = props => {
+  return (
+    <div>test</div>
+  )
+}
+
 let Main = props => {
   let {
-        hintShow,
-        children,
-        message,
-        delay,
-        status,
-        loadingShow,
-        common,
-        popup
-      } = props
+    hintShow,
+    children,
+    message,
+    delay,
+    status,
+    loadingShow,
+    common,
+    popup
+  } = props
 
   return (
-    <Router>
+    <Router history={ history }>
       <div>
-        <Route path={ '/' } exact getComponent={ getAdd }/>
+        <Header/>
+        <Route path={ '/' } exact component={ Test }/>
       </div>
     </Router>
   )
