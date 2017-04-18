@@ -5,6 +5,7 @@ import { Route, Link } from 'react-router-dom'
 import createHistory from 'history/createBrowserHistory'
 
 import Header from 'components/common/header'
+import Posts from 'components/home/posts'
 
 const history = createHistory()
 
@@ -42,7 +43,7 @@ let Main = props => {
     <Router history={ history }>
       <div>
         <Header/>
-        <Route path={ '/' } exact component={ Test }/>
+        <Route path={ '/' } exact component={ Posts }/>
       </div>
     </Router>
   )

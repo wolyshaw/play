@@ -1,14 +1,24 @@
-.home{
-  width: 660px;
-  margin: 0 auto;
+.listTip{
+  height: 40px;
+  line-height: 40px;
+  margin-top: 30px;
+  border-bottom: 1px solid rgba(0, 0, 0, .1);
 }
 .postList{
-
+  width: 1000px;
+  margin: auto;
 }
 .article{
   padding: 0 10px;
   margin: 30px auto;
   composes: clearfix from './common.css';
+}
+.header{
+  height: 30px;
+  line-height: 30px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-wrap: break-word;
 }
 .header span{
   display: inline-block;
@@ -24,6 +34,8 @@
   color: #333;
   font-weight: normal;
   display: inline-block;
+  margin: 0;
+  padding: 0;
 }
 .content p{
   color: #999;
