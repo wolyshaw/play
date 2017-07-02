@@ -1,28 +1,21 @@
-import React, {Component} from 'react'
-import {render} from 'react-dom'
-import { routerMiddleware } from 'react-router-redux'
-import {createStore, applyMiddleware} from 'redux'
-import {Provider} from 'react-redux'
-import thunk from 'redux-thunk'
+import React, { Component } from 'react'
+import { render } from 'react-dom'
+import { Provider } from 'react-redux'
+import { openHint } from 'components/common/common'
 
-import store from './reducers'
-import Main from 'containers/main'
-import Home from 'components/home'
-import 'static/common.css'
+import { appStore } from 'util'
 
-const middleware = [
-  thunk,
-  routerMiddleware(history)
-]
-
-const appStore = createStore(
-  store,
-  applyMiddleware(...middleware)
-)
+const Test = props => {
+  return (
+    <div onClick={ () => openHint('click') }>
+      test
+    </div>
+  )
+}
 
 render(
-  <Provider store={appStore}>
-    <Main/>
+  <Provider store={ appStore }>
+    <Test/>
   </Provider>,
   document.getElementById('app')
 )
