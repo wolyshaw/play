@@ -16,7 +16,7 @@ module.exports = {
     publicPath: '/dist',
     chunkFilename: '/[hash:5].[name].chunk.js'
   },
-  module: {
+  rules: {
     loaders: [
       {
         test: /\.js$/,
@@ -24,7 +24,7 @@ module.exports = {
         loader: 'babel-loader?presets[]=es2015&presets[]=react'
       },
       {
-        test: /\.css$/,
+        test: /\.(css|less)$/,
         loader: ExtractTextPlugin.extract({
           fullback: 'style-loader',
           loader: ['css-loader?modules&localIdentName=[name]--[local]--[hash:base64:5]']
@@ -33,7 +33,7 @@ module.exports = {
       {
         test: /\.(jpg|png|gif)$/,
         loader: 'url-loader',
-        query: {
+        options: {
           limit: 8192,
           name: '[name].[ext]'
         }

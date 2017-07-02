@@ -13,26 +13,26 @@ module.exports = {
     publicPath: publicPath
   },
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.js$/,
         exclude: /node_modules/,
         loader: 'babel-loader',
-        query: {
+        options: {
           presets:  ['react', 'es2015']
         }
       },
       {
-        test: /\.css$/,
+        test: /\.(css|less)$/,
         loader: ExtractTextPlugin.extract({
           fallback: 'style-loader',
-          use: ['css-loader?modules&localIdentName=[name]--[local]--[hash:base64:5]']
+          use: ['css-loader?modules&localIdentName=[name]--[local]--[hash:base64:5]!less-loader']
         })
       },
       {
         test: /\.(jpg|png|gif)$/,
         loader: 'url-loader',
-        query: {
+        options: {
           limit: 8192,
           name: '[name].[ext]'
         }
