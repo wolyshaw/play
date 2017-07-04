@@ -1,23 +1,18 @@
-import React, { Component } from 'react'
-import { render } from 'react-dom'
-
+import 'rc-notification/assets/index.css'
 import styles from 'static/common.less'
+import 'static/nomodules/common.less'
 
-const HintList = props => {
-  let { hint, status } = props
-  return (
-    <div className={ styles.hint }>
-      { props.hint }
-    </div>
-  )
-}
+import Notification from 'rc-notification'
+const notification = Notification.newInstance()
 
-export const openHint = (text = '', time = 5000) => {
-  let timer,
-    div = document.createElement('div')
-  render(
-    <HintList hint={ text }/>,
-    div
-  )
-  document.body.append(div)
+export const openNotification = set => {
+  let { content, duration = 3, style = style, onClose, closable, key } = set
+  notification.notice({
+    content,
+    duration,
+    style,
+    onClose,
+    closable,
+    key
+  })
 }

@@ -24,9 +24,18 @@ module.exports = {
       },
       {
         test: /\.(css|less)$/,
+        exclude: /node_modules|nomodules/,
         loader: ExtractTextPlugin.extract({
           fallback: 'style-loader',
-          use: ['css-loader?modules&localIdentName=[name]--[local]--[hash:base64:5]!less-loader']
+          use: ['css-loader?modules&localIdentName=[name]--[local]--[hash:base64:5]', 'less-loader']
+        })
+      },
+      {
+        test: /\.(css|less)$/,
+        include: /node_modules|nomodules/,
+        loader: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: 'css-loader!less-loader'
         })
       },
       {

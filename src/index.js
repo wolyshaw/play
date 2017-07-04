@@ -1,13 +1,20 @@
 import React, { Component } from 'react'
 import { render } from 'react-dom'
 import { Provider } from 'react-redux'
-import { openHint } from 'components/common/common'
+import { openNotification } from 'components/common/common'
 
 import { appStore } from 'util'
 
+const hintStyle = {
+  padding: 0,
+  borderRadius: 5,
+  minWidth: 40,
+  minHeight: 40
+}
+
 const Test = props => {
   return (
-    <div onClick={ () => openHint('click') }>
+    <div onClick={ () => openNotification({content: 'test', duration: 10, style: hintStyle})}>
       test
     </div>
   )
