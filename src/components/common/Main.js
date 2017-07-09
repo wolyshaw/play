@@ -2,11 +2,14 @@ import React, { Component } from 'react'
 import { render } from 'react-dom'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import { apiFetch } from 'util/util'
+import Helmet from 'react-helmet'
 import Header from 'components/common/Header'
 import Bundle from 'components/common/Bundle'
-import Helmet from 'react-helmet'
+
+import styles from 'static/main.less'
 
 const HomeLazy = require('bundle-loader?lazy&name=home!components/pages/Home')
+const ArticleLazy = require('bundle-loader?lazy&name=home!components/pages/Article')
 
 const Test = props => {
   return (
@@ -23,23 +26,25 @@ const Home = props => (
   </Bundle>
 )
 
-const TestA = props => {
-  return (
-    <div>
-      TestA
-    </div>
-  )
-}
+const Article = props => (
+  <Bundle load={ ArticleLazy } title={ 'Home' }>
+    { (Container) => <Container { ...props }/> }
+  </Bundle>
+)
 
 const Main = props => {
   return (
     <Router>
       <div>
         <Header/>
-        <Switch>
-          <Route path={ '/' } exact component={ Home }/>
-          <Route component={ Test }/>
-        </Switch>
+        <div  className={ styles.controller }>
+          <Switch>
+            <Route path={ '/' } exact component={ Home }/>
+            <Route path={ '/page/:id' } exact component={ Home }/>
+            <Route path={ '/article/:id' } exact component={ Article }/>
+            <Route component={ Test }/>
+          </Switch>
+        </div>
       </div>
     </Router>
   )

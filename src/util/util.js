@@ -73,7 +73,7 @@ export const apiFetch = set => {
     Object.assign(init, initHeader)
   }
   setting = Object.assign({}, init, {
-    body: set.body
+    body: JSON.stringify(set.body)
   })
   isHint = set.hint === undefined ? true : set.hint
 
