@@ -6,10 +6,10 @@ import Notification from 'rc-notification'
 const notification = Notification.newInstance()
 
 const hintStyle = {
-  padding: 0,
+  padding: 10,
   borderRadius: 5,
-  minWidth: 40,
-  minHeight: 40
+  transform: 'translateX(-50%)',
+  fontSize: 12
 }
 
 export const openNotification = set => {

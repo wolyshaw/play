@@ -1,7 +1,10 @@
 import config from '../../config'
 import fetch from 'isomorphic-fetch'
-import setLoading from 'actions/common/loading'
-import setHint from 'actions/common/hint'
+import { openNotification } from 'components/common/common'
+
+import { appStore } from 'util'
+
+const { getState, dispatch } = appStore
 
 export const formatTime = time => {
   let depositTime = new Date(time),
@@ -53,12 +56,13 @@ export const fileSize = size => {
 
 }
 
-export const apiFetch = (set, dispatch) => {
+export const apiFetch = set => {
   let init, setting, isHint,
     isFormData = set.body instanceof FormData,
     initHeader = {
       headers: {
-        'Content-Type': 'application/x-www-form-urlencoded'
+        'Content-Type': 'application/json',
+        'token': localStorage.getItem('token')
       }
     }
   init = {
@@ -69,27 +73,21 @@ export const apiFetch = (set, dispatch) => {
     Object.assign(init, initHeader)
   }
   setting = Object.assign({}, init, {
-    body: (isFormData ? set.body : objToStr(set.body))
+    body: set.body
   })
   isHint = set.hint === undefined ? true : set.hint
 
-  if (dispatch) {
-    dispatch(setLoading(true))
-  }
+  // dispatch(setLoading(true))
 
-  fetch(config.apiHost + set.url, setting)
+  fetch(set.url, setting)
     .then(res => {
-      if (dispatch) {
-        dispatch(setLoading(false))
-        if (isHint) {
-          dispatch(setHint({
-            message: r.msg
-          }))
-        }
-      }
+      // dispatch(setLoading(false))
       return res.json()
     })
     .then(r => {
+      if (isHint) {
+        openNotification({content: r.msg})
+      }
       if (r.code === 200) {
         if (set.success && typeof set.success === 'function') {
           set.success(r)
@@ -97,12 +95,7 @@ export const apiFetch = (set, dispatch) => {
       }
     })
     .catch(err => {
-      if (dispatch) {
-        dispatch(setLoading(false))
-        dispatch(setHint({
-          message: '请求错误，请检查网络！'
-        }))
-      }
-      throw err
+        // dispatch(setLoading(false))
+      openNotification({content: err})
     })
 }
