@@ -2,13 +2,27 @@ import React, { Component } from 'react'
 import { render } from 'react-dom'
 import { apiFetch } from 'util/util'
 import { closePopup } from 'components/popups'
+import { setUser } from 'actions/user'
+import { appStore } from 'util'
 
 import styles from 'static/popups/login.less'
+
+const { dispatch } = appStore
 
 class Login extends Component {
   constructor(props) {
     super(props)
     this.submit = this._submit.bind(this)
+  }
+
+  getUserInfo() {
+    apiFetch({
+      url: '/common/user',
+      success: r => {
+        dispatch(setUser(r.list))
+        closePopup()
+      }
+    })
   }
 
   _submit(e) {
@@ -21,7 +35,7 @@ class Login extends Component {
       },
       success: r => {
         localStorage.setItem('token', r.list)
-        closePopup()
+        this.getUserInfo()
       }
     })
   }
