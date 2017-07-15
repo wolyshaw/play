@@ -16,14 +16,15 @@ class ArticleList extends Component {
   }
 
   componentWillMount() {
+    let params = this.props.params || {}
     this.loading = true
     apiFetch({
       url: this.props.api,
       hint: false,
-      body: {
+      body: Object.assign(params,{
         pageindex: '1',
         pagenum: '10'
-      },
+      }),
       success: r => {
         this.loading = false
         this.setState({

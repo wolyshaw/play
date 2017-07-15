@@ -10,6 +10,7 @@ import styles from 'static/main.less'
 
 const HomeLazy = require('bundle-loader?lazy&name=home!components/pages/Home')
 const ArticleLazy = require('bundle-loader?lazy&name=home!components/pages/Article')
+const UserLazy = require('bundle-loader?lazy&name=home!components/pages/User')
 
 const Test = props => {
   return (
@@ -32,6 +33,13 @@ const Article = props => (
   </Bundle>
 )
 
+const User = props => (
+  <Bundle load={ UserLazy } title={ 'Home' }>
+    { (Container) => <Container { ...props }/> }
+  </Bundle>
+)
+
+
 const Main = props => {
   return (
     <Router>
@@ -42,6 +50,7 @@ const Main = props => {
             <Route path={ '/' } exact component={ Home }/>
             <Route path={ '/page/:id' } exact component={ Home }/>
             <Route path={ '/article/:id' } exact component={ Article }/>
+            <Route path={ '/user/:id' } exact component={ User }/>
             <Route component={ Test }/>
           </Switch>
         </div>

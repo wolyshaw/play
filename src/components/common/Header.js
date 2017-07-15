@@ -31,7 +31,7 @@ export default class Header extends Component {
 
     return (
       <header className={ styles.header + ' clearfix' }>
-        <Link to={ '/' } className={ styles.logo }><img src='http://play-static.oss-cn-shanghai.aliyuncs.com/common/abcdea.png?x-oss-process=style/h_400'/></Link>
+        <Link to={ '/' } className={ styles.logo }><img src='//play-static.oss-cn-shanghai.aliyuncs.com/common/abcdea.png?x-oss-process=style/h_400'/></Link>
         <nav>
           <NavLink to={ '/' } activeClassName={ styles.active }>首页</NavLink>
           <NavLink to={ '/404' } activeClassName={ styles.active }>404</NavLink>

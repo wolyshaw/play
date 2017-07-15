@@ -6,16 +6,20 @@ import { appStore } from 'util'
 
 const { getState, dispatch } = appStore
 
-export const formatTime = time => {
-  let depositTime = new Date(time),
-    Y = depositTime.getFullYear(),
-    M = (depositTime.getMonth() + 1) < 10 ? '0' + (depositTime.getMonth() + 1) : (depositTime.getMonth() + 1),
-    D = depositTime.getDate() < 10 ? '0' + depositTime.getDate() : depositTime.getDate(),
-    h = depositTime.getHours() < 10 ? '0' + depositTime.getHours() : depositTime.getHours(),
-    m = depositTime.getMinutes() < 10 ? '0' + depositTime.getMinutes() : depositTime.getMinutes(),
-    s = depositTime.getSeconds() < 10 ? '0' + depositTime.getSeconds() : depositTime.getSeconds()
-  return Y + '-' + M + '-' + D + ' ' + h + ':' + m + ':' + s
+
+const addZreo = n => (n < 10 ? '0' : '') + n
+
+export const fortmatTime = (time, type) => {
+  let m = new Date(time), d = [], t = []
+  d.push(m.getFullYear())
+  d.push(addZreo(m.getMonth() + 1))
+  d.push(addZreo(m.getDate()))
+  t.push(addZreo(m.getHours()))
+  t.push(addZreo(m.getMinutes()))
+  t.push(addZreo(m.getSeconds()))
+  return !type ? [d.join('-'), t.join(':')].join(' ') : d.join('-')
 }
+
 
 export const objToStr = obj => {
   let strArr = []
