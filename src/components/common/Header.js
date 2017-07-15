@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { render } from 'react-dom'
-import { NavLink } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 import { appStore } from 'util'
 import { openPopup } from 'components/popups'
 import styles from 'static/header.less'
@@ -28,14 +28,17 @@ export default class Header extends Component {
 
   render() {
     let { token } = appStore.getState()
-    console.log(token)
+
     return (
-      <header className={ styles.header }>
+      <header className={ styles.header + ' clearfix' }>
+        <Link to={ '/' } className={ styles.logo }><img src='http://play-static.oss-cn-shanghai.aliyuncs.com/common/abcdea.png?x-oss-process=style/h_400'/></Link>
         <nav>
           <NavLink to={ '/' } activeClassName={ styles.active }>首页</NavLink>
           <NavLink to={ '/404' } activeClassName={ styles.active }>404</NavLink>
         </nav>
-        { token ? <UserButtons/> : <LoginButtons/> }
+        <div className={ styles.userCtrl }>
+          { token ? <UserButtons/> : <LoginButtons/> }
+        </div>
       </header>
     )
   }

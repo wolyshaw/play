@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom'
 import { apiFetch } from 'util/util'
 import ArticleList from 'components/common/ArticleList'
 
+import styles from 'static/home.less'
+
 class Home extends Component {
   constructor(props) {
     super(props)
@@ -11,7 +13,7 @@ class Home extends Component {
 
   render() {
     return (
-      <div>
+      <div className={ styles.wrap }>
         <ArticleList api={ '/front/article/list' }/>
       </div>
     )
