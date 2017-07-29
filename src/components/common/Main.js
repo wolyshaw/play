@@ -8,11 +8,12 @@ import Bundle from 'components/common/Bundle'
 
 import styles from 'static/main.less'
 
-const HomeLazy = require('bundle-loader?lazy&name=home!components/pages/Home')
-const ArticleLazy = require('bundle-loader?lazy&name=home!components/pages/Article')
-const UserLazy = require('bundle-loader?lazy&name=home!components/pages/User')
+const HomeLazy = require('bundle-loader?lazy&name=Home!components/pages/Home')
+const ArticleLazy = require('bundle-loader?lazy&name=Article!components/pages/Article')
+const UserLazy = require('bundle-loader?lazy&name=User!components/pages/User')
+const CreateArticleLazy = require('bundle-loader?lazy&name=CreateArticle!components/pages/CreateArticle')
 
-const Test = props => {
+const NotFind = props => {
   return (
     <div>
       <Helmet title={ '当前页面未找到' }/>
@@ -28,13 +29,19 @@ const Home = props => (
 )
 
 const Article = props => (
-  <Bundle load={ ArticleLazy } title={ 'Home' }>
+  <Bundle load={ ArticleLazy } title={ 'Article' }>
     { (Container) => <Container { ...props }/> }
   </Bundle>
 )
 
 const User = props => (
-  <Bundle load={ UserLazy } title={ 'Home' }>
+  <Bundle load={ UserLazy } title={ 'User' }>
+    { (Container) => <Container { ...props }/> }
+  </Bundle>
+)
+
+const CreateArticle = props => (
+  <Bundle load={ CreateArticleLazy } title={ '创建新的内容' }>
     { (Container) => <Container { ...props }/> }
   </Bundle>
 )
@@ -51,7 +58,8 @@ const Main = props => {
             <Route path={ '/page/:id' } exact component={ Home }/>
             <Route path={ '/article/:id' } exact component={ Article }/>
             <Route path={ '/user/:id' } exact component={ User }/>
-            <Route component={ Test }/>
+            <Route path={ '/create/article' } exact component={ CreateArticle }/>
+            <Route component={ NotFind }/>
           </Switch>
         </div>
       </div>

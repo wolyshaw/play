@@ -1,6 +1,5 @@
 import 'rc-notification/assets/index.css'
 import styles from 'static/common.less'
-import 'static/nomodules/common.less'
 
 import Notification from 'rc-notification'
 const notification = Notification.newInstance()

@@ -34,6 +34,7 @@ export default class Header extends Component {
         <Link to={ '/' } className={ styles.logo }><img src='//play-static.oss-cn-shanghai.aliyuncs.com/common/abcdea.png?x-oss-process=style/h_400'/></Link>
         <nav>
           <NavLink to={ '/' } activeClassName={ styles.active }>首页</NavLink>
+          <NavLink to={ '/create/article' } activeClassName={ styles.active }>创建内容</NavLink>
           <NavLink to={ '/404' } activeClassName={ styles.active }>404</NavLink>
         </nav>
         <div className={ styles.userCtrl }>
