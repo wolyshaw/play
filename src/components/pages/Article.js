@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { render } from 'react-dom'
 import { Link } from 'react-router-dom'
 import Helmet from 'react-helmet'
-import { apiFetch } from 'util/util'
+import { apiFetch, fortmatTime } from 'util/util'
 import ArticleList from 'components/common/ArticleList'
 import classNames from 'classNames/bind'
 import styles from 'static/article.less'
@@ -27,16 +27,24 @@ class Article extends Component {
   }
 
   render() {
-    let { title, excerpt, pic } = this.state
+    let { title, excerpt, pic, createdAt, author = {}, tags = [], content } = this.state
     return (
       <article className={ styles.controller }>
         <Helmet title={ this.state.title || '' }/>
         <div className={cx(styles.head, { pic: pic })}>
           <div className={ styles.mate }>
             <h3 className={ styles.title }>{ title }</h3>
+            <div className={ cx({ excerpt }) }>{ excerpt }</div>
+            <div className={ styles.tags }>
+              { tags.map(item => <Link key={ item.id } to={ `/tag/${item.id}` }>{ item.title }</Link>) }
+            </div>
+            <div className={ styles.user }>
+              <Link to={ `/user/${author.id}` }><img src={ author.avatar }/>{ author.nice_name }</Link>
+              <span>发布时间：{ fortmatTime(createdAt) }</span>
+            </div>
           </div>
         </div>
-        <div className={ cx({ excerpt }) }>{ excerpt }</div>
+        <div className={ styles.content } dangerouslySetInnerHTML={{__html: content}}></div>
       </article>
     )
   }
