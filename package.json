@@ -10,8 +10,8 @@
   ],
   "description": "",
   "scripts": {
-    "dev": "webpack --config ./webpack.config.dev.js && node server.js",
-    "build": "webpack"
+    "dev": "webpack --config ./webpack.config.dev.js --color && node server.js",
+    "build": "webpack --color"
   },
   "dependencies": {
     "classnames": "^2.2.5",

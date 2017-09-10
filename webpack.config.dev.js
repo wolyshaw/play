@@ -53,7 +53,6 @@ module.exports = {
       util: path.resolve(path.join(__dirname, 'src', 'util')),
       static: path.resolve(path.join(__dirname, 'src', 'static')),
       actions: path.resolve(path.join(__dirname, 'src', 'actions')),
-      containers: path.resolve(path.join(__dirname, 'src', 'containers')),
       components: path.resolve(path.join(__dirname, 'src', 'components'))
     }
   },
