@@ -93,7 +93,7 @@ export const apiFetch = set => {
 
   // dispatch(setLoading(true))
 
-  fetch(set.url, setting)
+  fetch(config.apiHost + set.url, setting)
     .then(res => {
       // dispatch(setLoading(false))
       return res.json()
