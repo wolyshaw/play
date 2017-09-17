@@ -1,10 +1,12 @@
-import {combineReducers} from 'redux'
-import {posts} from './home'
+import { combineReducers } from 'redux'
 import common from './common'
-import popup from './popup'
+import token from './token'
+import user from './user'
 
-export default combineReducers({
-  posts,
+const reducers = {
   common,
-  popup
-})
+  token,
+  user
+}
+
+export default combineReducers(reducers)

@@ -7,30 +7,55 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin')
 
 module.exports = {
   entry: {
-    vendor: ['react', 'react-dom', 'react-router', 'redux', 'react-redux', 'redux-thunk', 'isomorphic-fetch'],
+    vendor: ['react', 'history', 'react-dom', 'react-router-dom', 'redux', 'react-redux', 'redux-thunk', 'isomorphic-fetch'],
     bundle: './src/index.js'
   },
   output: {
     filename: '[hash:5].[name].js',
     path: path.resolve('./dist'),
-    publicPath: '/dist',
-    chunkFilename: '/[hash:5].[name].chunk.js'
+    publicPath: '/dist/',
+    chunkFilename: '[chunkhash:5].[name].chunk.js'
   },
   module: {
-    loaders: [
+    rules: [
       {
-      test: /\.js$/,
-      exclude: /node_modules/,
-      loader: 'babel-loader?presets[]=es2015&presets[]=react'
-    },
-    {
-      test: /\.css$/,
-      loader: ExtractTextPlugin.extract({
-        fullbackLoader: 'style-loader',
-        loader: ['css-loader?modules&localIdentName=[name]--[local]--[hash:base64:5]']
-      })
+        test: /\.js$/,
+        exclude: /node_modules/,
+        loader: 'babel-loader?presets[]=es2015&presets[]=react'
+      },
+      {
+        test: /\.(css|less)$/,
+        exclude: /node_modules/,
+        loader: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: ['css-loader?minimize&modules&localIdentName=[name]--[local]--[hash:base64:5]', 'less-loader']
+        })
+      },
+      {
+        test: /\.(css|less)$/,
+        include: /node_modules/,
+        loader: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: 'css-loader?minimize!less-loader'
+        })
+      },
+      {
+        test: /\.(jpg|png|gif)$/,
+        loader: 'url-loader',
+        options: {
+          limit: 8192,
+          name: '[hash:base64:5]--[name].[ext]'
+        }
+      }
+    ]
+  },
+  resolve: {
+    alias: {
+      util: path.resolve(path.join(__dirname, 'src', 'util')),
+      static: path.resolve(path.join(__dirname, 'src', 'static')),
+      actions: path.resolve(path.join(__dirname, 'src', 'actions')),
+      components: path.resolve(path.join(__dirname, 'src', 'components'))
     }
-  ]
   },
   plugins: [
     new CleanPlugin(['dist'], {
@@ -44,15 +69,8 @@ module.exports = {
       description: config.site.description,
       header: config.site.header
     }),
-    new ExtractTextPlugin({
-      filename: 'static/[hash:5].[name].css',
-      allChunks: true
-    }),
-    new webpack.optimize.UglifyJsPlugin({
-      compress: {
-        warnings: false
-      }
-    }),
+    new ExtractTextPlugin('static/[hash:5].[name].css'),
+    new webpack.optimize.UglifyJsPlugin(),
     new webpack.DefinePlugin({
         'process.env': {
             NODE_ENV: '"production"'
