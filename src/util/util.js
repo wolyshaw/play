@@ -80,6 +80,7 @@ export const apiFetch = set => {
       }
     }
   init = {
+    mode: 'cors',
     method: 'post',
     credentials: 'include'
   }
