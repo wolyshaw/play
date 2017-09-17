@@ -10,5 +10,3 @@ export const appStore = createStore(
   store,
   applyMiddleware(...middleware)
 )
-
-console.log(appStore.getState())

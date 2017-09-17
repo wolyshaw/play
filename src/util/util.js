@@ -1,8 +1,18 @@
 import config from '../../config'
 import fetch from 'isomorphic-fetch'
 import { openNotification } from 'components/common/common'
+import { createStore, applyMiddleware } from 'redux'
+import thunk from 'redux-thunk'
+import store from '../reducers'
 
-import { appStore } from 'util'
+const middleware = [
+  thunk
+]
+
+export const appStore = createStore(
+  store,
+  applyMiddleware(...middleware)
+)
 
 const { getState, dispatch } = appStore
 
