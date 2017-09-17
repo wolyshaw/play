@@ -82,7 +82,7 @@ export const apiFetch = set => {
   init = {
     mode: 'cors',
     method: 'post',
-    credentials: 'include'
+    // credentials: 'include'
   }
   if (!isFormData) {
     Object.assign(init, initHeader)
