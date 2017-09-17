@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { render } from 'react-dom'
 import { Link } from 'react-router-dom'
 import { apiFetch } from 'util/util'
-import ArticleList from 'components/common/ArticleList'
+import ArticleList from 'components/elements/ArticleList'
 
 import styles from 'static/home.less'
 

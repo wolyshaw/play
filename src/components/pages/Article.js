@@ -3,7 +3,7 @@ import { render } from 'react-dom'
 import { Link } from 'react-router-dom'
 import Helmet from 'react-helmet'
 import { apiFetch, fortmatTime } from 'util/util'
-import ArticleList from 'components/common/ArticleList'
+import ArticleList from 'components/elements/ArticleList'
 import classNames from 'classNames/bind'
 import styles from 'static/article.less'
 

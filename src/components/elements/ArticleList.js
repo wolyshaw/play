@@ -3,7 +3,7 @@ import { render } from 'react-dom'
 import { Link } from 'react-router-dom'
 import { apiFetch } from 'util/util'
 
-import ArticleItem from 'components/common/ArticleItem'
+import ArticleItem from 'components/elements/ArticleItem'
 import styles from 'static/articleList.less'
 
 class ArticleList extends Component {
