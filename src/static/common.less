@@ -85,3 +85,22 @@ th {
   content: '';
   clear: both;
 }
+:global(.input) {
+  width: 100%;
+}
+:global(.button) {
+  margin: 0 auto;
+  width: 145px;
+  height: 40px;
+  line-height: 40px;
+  border-radius: 5px;
+  background-color: #2C97E8;
+  color: #fff;
+  text-align: center;
+  border: none;
+  opacity: 1;
+  transition: opacity .3s;
+  &:hover{
+    opacity: .8;
+  }
+}

@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import { apiFetch } from 'util/util'
 
 import ArticleItem from 'components/elements/ArticleItem'
+import EmptyList from 'components/elements/EmptyList'
 import styles from 'static/articleList.less'
 
 class ArticleList extends Component {
@@ -35,10 +36,11 @@ class ArticleList extends Component {
   }
 
   render() {
+    let { list= [] } = this.state
     return (
       <div className={ styles.articleList }>
         {
-          this.state.list.map(item => <ArticleItem key={ item.id } article={ item }/>)
+          list.length ? list.map(item => <ArticleItem key={ item.id } article={ item }/>) : <EmptyList/>
         }
       </div>
     )

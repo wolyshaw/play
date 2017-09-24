@@ -85,7 +85,7 @@ class CreateArticle extends Component {
           editorState={ editorState }
           onEditorStateChange={ this.onEditorStateChange }
         />
-      <input type={ 'submit' } value={ '提交' }/>
+      <input type={ 'submit' } value={ '提交' } className={'button'}/>
       </form>
     )
   }
