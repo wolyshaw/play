@@ -1,9 +1,10 @@
 import config from '../../config'
 import fetch from 'isomorphic-fetch'
-import { openNotification } from 'components/common/common'
+import { openNotification } from 'components/elements/common'
 import { createStore, applyMiddleware } from 'redux'
 import thunk from 'redux-thunk'
 import store from '../reducers'
+import { showLoading, hideLoading } from 'actions/loading'
 
 const middleware = [
   thunk
@@ -81,6 +82,7 @@ export const apiFetch = set => {
     }
   init = {
     mode: 'cors',
+    type: 'cors',
     method: 'post',
     // credentials: 'include'
   }
@@ -88,15 +90,15 @@ export const apiFetch = set => {
     Object.assign(init, initHeader)
   }
   setting = Object.assign({}, init, {
-    body: JSON.stringify(set.body)
+    body: isFormData ? set.body : JSON.stringify(set.body)
   })
   isHint = set.hint === undefined ? true : set.hint
 
-  // dispatch(setLoading(true))
+  dispatch(showLoading())
 
-  fetch(config.apiHost + set.url, setting)
+  fetch((/\/\//.test(set.url) ? set.url : config.apiHost + set.url), setting)
     .then(res => {
-      // dispatch(setLoading(false))
+      // dispatch(hideLoading())
       return res.json()
     })
     .then(r => {
@@ -108,9 +110,13 @@ export const apiFetch = set => {
           set.success(r)
         }
       }
+
+      if (set.complete && typeof set.complete === 'function') {
+        set.complete(r)
+      }
     })
     .catch(err => {
-        // dispatch(setLoading(false))
+      // dispatch(hideLoading())
       openNotification({content: err})
     })
 }

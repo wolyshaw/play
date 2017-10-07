@@ -1,4 +1,43 @@
-.controller{
-  margin: auto;
-  // width: 1200px;
+.loading {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(255, 255, 255, .9);
+  color: rgba(0, 0, 0, .7);
+  font-size: 14px;
+  display: flex;
+  > div{
+    padding: 10px;
+    margin: auto;
+    > span{
+      display: block;
+      width: 48px;
+      height: 48px;
+      margin: auto;
+      background: url('static/elements/loading.png') top center no-repeat;
+      @keyframes loading{
+        0%{
+          -webkit-transform: rotate(0deg);
+        }
+        100%{
+          -webkit-transform: rotate(360deg);
+        }
+      }
+      animation: loading 1s linear infinite;
+    }
+    > p{
+      text-align: center;
+      padding: 10px 0;
+      margin: 0;
+    }
+  }
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity .3s;
+  &.visibility{
+    opacity: 1;
+    visibility: visible;
+  }
 }

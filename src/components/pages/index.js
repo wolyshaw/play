@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { Route, Switch } from 'react-router-dom'
-import Bundle from 'components/common/Bundle'
+import Bundle from 'components/elements/Bundle'
+import Header from 'components/elements/Header'
+import Helmet from 'react-helmet'
 
 const HomeLazy = require('bundle-loader?lazy&name=Home!components/pages/Home')
 const ArticleLazy = require('bundle-loader?lazy&name=Article!components/pages/Article')
@@ -42,13 +44,16 @@ const CreateArticle = props => (
 
 const Pages = props => {
   return (
-    <Switch>
-      <Route exact path='/' component={Home}/>
-      <Route path={ '/article/:id' } exact component={ Article }/>
-      <Route path={ '/user/:id' } exact component={ User }/>
-      <Route path={ '/create/article' } exact component={ CreateArticle }/>
-      <Route component={ NotFind }/>
-    </Switch>
+    <div>
+      <Header/>
+      <Switch>
+        <Route exact path='/' component={Home}/>
+        <Route path={ '/article/:id' } exact component={ Article }/>
+        <Route path={ '/user/:id' } exact component={ User }/>
+        <Route path={ '/create/article' } exact component={ CreateArticle }/>
+        <Route component={ NotFind }/>
+      </Switch>
+    </div>
   )
 }
 
