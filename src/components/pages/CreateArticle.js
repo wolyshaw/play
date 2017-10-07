@@ -16,7 +16,8 @@ class CreateArticle extends Component {
       editorState: null,
       title: '',
       excerpt: '',
-      tag: []
+      tag: [],
+      token: ''
     }
     this.onEditorStateChange = this._onEditorStateChange.bind(this)
     this.submit = this._submit.bind(this)
@@ -47,6 +48,11 @@ class CreateArticle extends Component {
 
   componentWillMount() {
     apiFetch({
+      url: '/common/file/token',
+      hint: false,
+      success: r => this.setState({ token: r.list.token || '' })
+    })
+    apiFetch({
       url: '/front/tag/list',
       hint: false,
       success: r => this.setState({ tagList: r.list.rows || [] })
@@ -63,12 +69,14 @@ class CreateArticle extends Component {
           placeholder={ '请输入内容标题' }
           onChange={ e => this.setState({ title: e.target.value }) }
           value={ this.state.title }
+          required
         />
         <textarea
           className={ styles.excerpt }
           placeholder={ '请输入内容摘要' }
           onChange={ e => this.setState({ excerpt: e.target.value }) }
           value={ this.state.excerpt }
+          required
         ></textarea>
         <Select
           className={ styles.select }
@@ -84,8 +92,44 @@ class CreateArticle extends Component {
           editorClassName={ styles.editorContent }
           editorState={ editorState }
           onEditorStateChange={ this.onEditorStateChange }
+          toolbar={{
+            options: ['inline', 'list', 'blockType', 'link', 'image'],
+            inline: {
+              options: ['bold', 'italic', 'underline']
+            },
+            list: {
+              options: ['unordered', 'ordered']
+            },
+            image: {
+              className: undefined,
+              component: undefined,
+              popupClassName: undefined,
+              urlEnabled: false,
+              uploadEnabled: true,
+              alignmentEnabled: true,
+              uploadCallback: e => {
+                return new Promise((resolve, reject) => {
+                  let formData = new FormData()
+                  formData.append('token', this.state.token)
+                  formData.append('file', e)
+                  apiFetch({
+                    url: '//upload.qiniu.com',
+                    hint: false,
+                    body: formData,
+                    complete: r => (r ? resolve({ data: { link: `//static.play.abcdea.cn/${r.key}!size_webp`}}) : reject('error'))
+                  })
+                })
+              },
+              inputAccept: 'image/gif,image/jpeg,image/jpg,image/png,image/svg',
+              alt: { present: false, mandatory: false },
+              defaultSize: {
+                height: 'auto',
+                width: 'auto',
+              },
+            }
+          }}
         />
-      <input type={ 'submit' } value={ '提交' } className={'button'}/>
+      <input type={ 'submit' } value={ '提交' } className={'button'} style={{ width: '100%', marginTop: '15px'}}/>
       </form>
     )
   }

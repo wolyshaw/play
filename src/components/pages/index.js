@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Route, Switch } from 'react-router-dom'
-import Bundle from 'components/common/Bundle'
+import Bundle from 'components/elements/Bundle'
 import Header from 'components/elements/Header'
 import Helmet from 'react-helmet'
 
