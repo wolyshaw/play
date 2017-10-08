@@ -17,7 +17,6 @@ export const appStore = createStore(
 
 const { getState, dispatch } = appStore
 
-
 const addZreo = n => (n < 10 ? '0' : '') + n
 
 export const fortmatTime = (time, type) => {

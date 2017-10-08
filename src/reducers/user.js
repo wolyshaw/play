@@ -3,6 +3,9 @@ const user = (state = null, action) => {
     case 'set_user':
       return action.data
       break
+    case 'clear_user':
+      return null
+      break
     default:
       return state
   }

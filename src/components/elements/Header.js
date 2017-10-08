@@ -1,34 +1,45 @@
 import React, { Component } from 'react'
-import { render } from 'react-dom'
 import { Link, NavLink } from 'react-router-dom'
 import { appStore } from 'util'
-import { openPopup } from 'components/popups'
+import { connect } from 'react-redux'
+import { openPopup } from 'actions/popup'
+import { clearUser } from 'actions/user'
 import styles from 'static/header.less'
 
 const LoginButtons = props => {
   return (
     <div>
-      <span onClick={ () => openPopup('login') }>登录</span>
+      <span onClick={ () => appStore.dispatch(openPopup({name: 'login'})) }>登录</span>
     </div>
   )
 }
 
 const UserButtons = props => {
+  let { data } = props.user
   return (
     <div>
-      <span onClick={ () => openPopup('login') }>退出</span>
+      <Link to={ `/user/${data.id}` }>
+        <img src={data.avatar} className={ styles.avatar }/>{data.nice_name}
+      </Link>
+      <span onClick={
+        () => {
+          localStorage.removeItem('token')
+          appStore.dispatch(clearUser())}
+        }
+      >
+        退出
+      </span>
     </div>
   )
 }
 
-export default class Header extends Component {
+class Header extends Component {
   constructor(props) {
     super(props)
   }
 
   render() {
-    let { token } = appStore.getState()
-
+    let { user } = this.props
     return (
       <header className={ styles.header + ' clearfix' }>
         <Link to={ '/' } className={ styles.logo }><img src='//play-static.oss-cn-shanghai.aliyuncs.com/common/abcdea.png?x-oss-process=style/h_400'/></Link>
@@ -38,9 +49,11 @@ export default class Header extends Component {
           <NavLink to={ '/404' } activeClassName={ styles.active }>404</NavLink>
         </nav>
         <div className={ styles.userCtrl }>
-          { token ? <UserButtons/> : <LoginButtons/> }
+          { user ? <UserButtons user={ user }/> : <LoginButtons/> }
         </div>
       </header>
     )
   }
 }
+
+export default connect(state => state)(Header)
