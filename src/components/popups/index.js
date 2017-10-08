@@ -1,14 +1,27 @@
 import React, { Component } from 'react'
 import { render } from 'react-dom'
+import { connect } from 'react-redux'
+import Bundle from 'components/elements/Bundle'
 
-import Login from './Login'
+const LoginLazy = require('bundle-loader?lazy&name=Login!components/popups/Login')
 import styles from 'static/popups/popup.less'
 
-const popupList = {
-  login: <Login/>
-}
+const Login = props => (
+  <Bundle load={ LoginLazy }>
+    { (Container) => <Container { ...props }/> }
+  </Bundle>
+)
 
-let div
+const SetActionPopup = popup => {
+  let name = popup.name.toUpperCase()
+  switch (name) {
+    case 'LOGIN':
+      return <Login {...popup}/>
+      break;
+    default:
+      ''
+  }
+}
 
 class Popups extends Component {
   constructor(props) {
@@ -16,29 +29,13 @@ class Popups extends Component {
   }
 
   render() {
+    let { popup } = this.props
     return (
       <div className={ styles.controller }>
-        <div className={ styles.shade }></div>
-        <div className={ styles.content }>
-          <div className={ styles.close } onClick={ () => closePopup() }>close</div>
-          { popupList[this.props.popup] || '' }
-        </div>
+        { SetActionPopup(popup) }
       </div>
     )
   }
 }
 
-export const openPopup = (popup, params) => {
-  div = document.createElement('div')
-  document.body.append(div)
-  render(
-    <Popups popup={ popup }/>,
-    div
-  )
-}
-
-export const closePopup = () => {
-  if (div) {
-    document.body.removeChild(div)
-  }
-}
+export default connect(state => state)(Popups)

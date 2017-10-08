@@ -1,3 +1,5 @@
+import { apiFetch } from 'util/util'
+
 export const clearUser = callback => {
   if (callback && typeof callback === 'function') {
     callback()
@@ -6,5 +8,13 @@ export const clearUser = callback => {
 }
 
 export const setUser = data => {
-  return { type: 'set_user', data }
+  return dispatch => {
+    return apiFetch({
+      url: '/common/user',
+      hint: false,
+      success: r => {
+        dispatch({ type: 'set_user', data: r.list })
+      }
+    })
+  }
 }

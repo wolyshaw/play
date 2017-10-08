@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import { Provider, connect } from 'react-redux'
 import { BrowserRouter, Switch } from 'react-router-dom'
 import Pages from 'components/pages'
+import Popups from 'components/popups'
+import { setUser } from 'actions/user'
 import Loading from 'components/elements/Loading'
 import { appStore } from 'util'
 
@@ -10,13 +12,17 @@ class Application extends Component {
     super(...props)
   }
 
+  componentWillMount() {
+    appStore.dispatch(setUser())
+  }
+
   render() {
-    console.log(this.props)
     return (
       <Provider store={ appStore }>
         <BrowserRouter>
           <div>
             <Pages/>
+            <Popups/>
             <Loading/>
           </div>
         </BrowserRouter>

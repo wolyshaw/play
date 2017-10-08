@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { render } from 'react-dom'
 import { apiFetch } from 'util/util'
-import { closePopup } from 'components/popups'
+import { closePopup } from 'actions/popup'
 import { setUser } from 'actions/user'
 import { appStore } from 'util'
 
@@ -15,27 +15,19 @@ class Login extends Component {
     this.submit = this._submit.bind(this)
   }
 
-  getUserInfo() {
-    apiFetch({
-      url: '/common/user',
-      success: r => {
-        dispatch(setUser(r.list))
-        closePopup()
-      }
-    })
-  }
-
   _submit(e) {
     e.preventDefault()
     apiFetch({
       url: '/common/login',
+      hint: false,
       body: {
         nice_name: this.refs.nice_name.value,
         password: this.refs.password.value
       },
       success: r => {
         localStorage.setItem('token', r.list)
-        this.getUserInfo()
+        dispatch(setUser())
+        dispatch(closePopup())
       }
     })
   }

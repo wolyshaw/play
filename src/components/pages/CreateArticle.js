@@ -83,6 +83,7 @@ class CreateArticle extends Component {
           multiple={ true }
           onChange={ values => this.setState({ tag: values}) }
           value={ this.state.tag }
+          placeholder='请选择标签'
         >
           {
             tagList.map(item => <Option key={ item.id } value={ item.id } title={ item.title }>{ item.title }</Option>)
@@ -116,12 +117,12 @@ class CreateArticle extends Component {
                     url: '//upload.qiniu.com',
                     hint: false,
                     body: formData,
-                    complete: r => (r ? resolve({ data: { link: `//static.play.abcdea.cn/${r.key}!size_webp`}}) : reject('error'))
+                    complete: r => (r ? resolve({ data: { link: `//o5baw8a4k.qnssl.com/${r.key}!size_webp`}}) : reject('error'))
                   })
                 })
               },
               inputAccept: 'image/gif,image/jpeg,image/jpg,image/png,image/svg',
-              alt: { present: false, mandatory: false },
+              alt: { present: true, mandatory: true },
               defaultSize: {
                 height: 'auto',
                 width: 'auto',
