@@ -4,6 +4,7 @@ import { openNotification } from 'components/elements/common'
 import { createStore, applyMiddleware } from 'redux'
 import thunk from 'redux-thunk'
 import store from '../reducers'
+import { openPopup } from 'actions/popup'
 import { showLoading, hideLoading } from 'actions/loading'
 
 const middleware = [
@@ -92,8 +93,8 @@ export const apiFetch = set => {
     body: isFormData ? set.body : JSON.stringify(set.body)
   })
   isHint = set.hint === undefined ? true : set.hint
-
-  dispatch(showLoading())
+  appStore.dispatch(openPopup({name: 'login'}))
+  // dispatch(showLoading())
 
   fetch((/\/\//.test(set.url) ? set.url : config.apiHost + set.url), setting)
     .then(res => {

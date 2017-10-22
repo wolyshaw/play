@@ -4,10 +4,10 @@ import Bundle from 'components/elements/Bundle'
 import Header from 'components/elements/Header'
 import Helmet from 'react-helmet'
 
-const HomeLazy = require('bundle-loader?lazy&name=Home!components/pages/Home')
-const ArticleLazy = require('bundle-loader?lazy&name=Article!components/pages/Article')
-const UserLazy = require('bundle-loader?lazy&name=User!components/pages/User')
-const CreateArticleLazy = require('bundle-loader?lazy&name=CreateArticle!components/pages/CreateArticle')
+const HomeLazy = require('bundle-loader?lazy&name=Home!components/pages/Home/index')
+const ArticleLazy = require('bundle-loader?lazy&name=Article!components/pages/Article/index')
+const UserLazy = require('bundle-loader?lazy&name=User!components/pages/User/index')
+const CreateArticleLazy = require('bundle-loader?lazy&name=CreateArticle!components/pages/CreateArticle/index')
 
 const NotFind = props => {
   return (

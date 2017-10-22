@@ -3,8 +3,8 @@ import { render } from 'react-dom'
 import { connect } from 'react-redux'
 import Bundle from 'components/elements/Bundle'
 
-const LoginLazy = require('bundle-loader?lazy&name=Login!components/popups/Login')
-import styles from 'static/popups/popup.less'
+const LoginLazy = require('bundle-loader?lazy&name=Login!components/popups/Login/index')
+import styles from './popup.less'
 
 const Login = props => (
   <Bundle load={ LoginLazy }>

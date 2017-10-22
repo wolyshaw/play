@@ -5,6 +5,6 @@ export const hideLoading = callback => {
   return { type: 'hide_loading' }
 }
 
-export const showLoading = (data = {}) => {
-  return { type: 'show_loading', data }
+export const showLoading = () => {
+  return { type: 'show_loading' }
 }

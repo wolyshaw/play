@@ -42,8 +42,8 @@ module.exports = {
         test: /\.(jpg|png|gif)$/,
         loader: 'url-loader',
         options: {
-          limit: 8192,
-          name: '[name].[ext]'
+          limit: 1,
+          name: 'static/images/[name].[ext]'
         }
       }
     ]

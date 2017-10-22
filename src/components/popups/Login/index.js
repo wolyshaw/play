@@ -5,7 +5,7 @@ import { closePopup } from 'actions/popup'
 import { setUser } from 'actions/user'
 import { appStore } from 'util'
 
-import styles from 'static/popups/login.less'
+import styles from './login.less'
 
 const { dispatch } = appStore
 

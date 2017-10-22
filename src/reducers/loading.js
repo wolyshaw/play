@@ -1,10 +1,13 @@
-const loading = (state = false, action) => {
+const loading = (state = null, action) => {
   switch (action.type) {
     case 'show_loading':
-      return action.data
+      return true
+      break
+    case 'hide_loading':
+      return false
       break
     default:
-      return state
+      return null
   }
 }
 
