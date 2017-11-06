@@ -12,6 +12,7 @@ module.exports = {
     path: path.resolve('./dev'),
     publicPath: publicPath
   },
+  devtool: 'source-map',
   module: {
     rules: [
       {

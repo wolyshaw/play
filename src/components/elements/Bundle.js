@@ -1,13 +1,11 @@
-import React, { Component } from 'react'
+import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 
-class Bundle extends Component {
+export default class Bundle extends PureComponent {
 
   constructor(props) {
     super(props)
-    this.state = {
-      mod: null
-    }
+    this.state = { mod: null }
   }
 
   componentWillMount() {
@@ -16,27 +14,21 @@ class Bundle extends Component {
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.load !== this.props.load) {
-      this.load(nextProps);
+      this.load(nextProps)
     }
   }
 
   load(props) {
-    this.setState({
-      mod: null
-    });
+    this.setState({ mod: null })
     props.load((mod) => {
-      this.setState({
-        mod: mod.default ? mod.default : mod
-      })
+      this.setState({ mod: mod.default ? mod.default : mod })
     })
   }
 
   render() {
     return (
       <span>
-        {
-          this.state.mod ? this.props.children(this.state.mod) : null
-        }
+        { this.state.mod ? this.props.children(this.state.mod) : null }
       </span>
     )
   }
@@ -46,5 +38,3 @@ Bundle.PropTypes = {
   load: PropTypes.func,
   children: PropTypes.func
 }
-
-export default Bundle

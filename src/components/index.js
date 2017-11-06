@@ -1,35 +1,17 @@
-import React, { Component } from 'react'
-import { Provider, connect } from 'react-redux'
-import { BrowserRouter, Switch } from 'react-router-dom'
-import Pages from 'components/pages'
-import Popups from 'components/popups'
-import { setUser } from 'actions/user'
-import Loading from 'components/elements/Loading/index'
-import { appStore } from 'util'
+import React, { PureComponent } from 'react'
+import Pages from './pages'
+import 'static/style/application.less'
 
-class Application extends Component {
+export default class Application extends PureComponent {
   constructor(props) {
     super(...props)
   }
 
-  componentWillMount() {
-    appStore.dispatch(setUser())
-  }
-
   render() {
-    console.log(this.props)
     return (
-      <Provider store={ appStore }>
-        <BrowserRouter>
-          <div>
-            <Pages/>
-            <Popups/>
-            <Loading/>
-          </div>
-        </BrowserRouter>
-      </Provider>
+      <div>
+        <Pages/>
+      </div>
     )
   }
 }
-
-export default connect(state => state)(Application)

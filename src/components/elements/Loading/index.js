@@ -1,25 +1,29 @@
 import React, { Component } from 'react'
-import classNames from 'classnames/bind'
-import { connect } from 'react-redux'
-
+import { render } from 'react-dom'
+import LoadingContent from './LoadingContent'
 import styles from './loading.less'
-const cx = classNames.bind(styles)
 
-class Loading extends Component {
-  constructor(props) {
-    super(...props)
-  }
+let div
 
-  render() {
-    let { loading } = this.props
-    return (
-      <div className={ cx('loading', {visibility: loading}) }>
-        <div>
-          <span></span>
-        </div>
-      </div>
-    )
-  }
+export const getHint = () => {
+  return document.querySelector('.' + styles.loading)
 }
 
-export default connect(state => state)(Loading)
+export const openLoading = () => {
+  let oldHint = getHint()
+  if(oldHint) {
+    oldHint.parentElement.style.display = ''
+    return
+  }
+  div = document.createElement('div')
+  render(<LoadingContent/>, div)
+  document.body.appendChild(div)
+}
+
+export const closeLoading = () => {
+  let oldHint = getHint()
+  if(oldHint) {
+    oldHint.parentElement.style.display = 'none'
+    return
+  }
+}
