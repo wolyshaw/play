@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react'
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import { Route, Switch } from 'react-router-dom'
 import Bundle from '../elements/Bundle'
 const HomeLazy = require('bundle-loader?lazy&name=Home!components/pages/Home')
 
@@ -24,12 +24,10 @@ export default class Pages extends PureComponent {
 
   render() {
     return (
-      <Router>
-        <Switch>
-          <Route exact path='/' component={ Home }/>
-          <Route component={ NotFind }/>
-        </Switch>
-      </Router>
+      <Switch>
+        <Route exact path='/' component={ Home }/>
+        <Route component={ NotFind }/>
+      </Switch>
     )
   }
 }
