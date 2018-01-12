@@ -2,21 +2,25 @@ import config from '../../config'
 import { openLoading, closeLoading } from 'components/elements/Loading'
 import Notification from 'rc-notification'
 
-export const fetchs = (url, option = {}) => {
+export const isNodejs = typeof window === 'undefined'
+
+export const Fetch = (url, option = {}) => {
   let init = {
     method: 'post',
     body: option.body || {}
   }
-  openLoading()
+  !isNodejs && openLoading()
   return fetch(config.apiHost + url, init)
     .then(res => {
       if(res.status === 200) {
         return res.json()
+      } else {
+        return Promise.reject('http status error')
       }
     })
     .then(r => {
-      closeLoading()
-      if(option.hint) {
+      !isNodejs && closeLoading()
+      if(!isNodejs && option.hint) {
         Notification.newInstance({prefixCls: 'hint'}, notification => {
           notification.notice({
             content: r.msg,
@@ -27,7 +31,14 @@ export const fetchs = (url, option = {}) => {
       return r
     })
     .catch(err => {
-      closeLoading()
-      return err
+      !isNodejs && closeLoading()
+      if(!isNodejs) {
+        Notification.newInstance({prefixCls: 'hint'}, notification => {
+          notification.notice({
+            content: err,
+            onClose: () => notification.destroy()
+          })
+        })
+      }
     })
 }

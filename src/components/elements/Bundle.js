@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react'
-import PropTypes from 'prop-types'
+import propTypes from 'prop-types'
 
 export default class Bundle extends PureComponent {
 
@@ -34,7 +34,7 @@ export default class Bundle extends PureComponent {
   }
 }
 
-Bundle.PropTypes = {
-  load: PropTypes.func,
-  children: PropTypes.func
+Bundle.propTypes = {
+  load: propTypes.func,
+  children: propTypes.func
 }

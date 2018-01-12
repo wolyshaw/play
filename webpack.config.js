@@ -1,19 +1,19 @@
 const webpack = require('webpack')
 const path = require('path')
 const config = require('./config')
+const lessConfig = require('./less.config')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CleanPlugin = require("clean-webpack-plugin")
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 
 module.exports = {
   entry: {
-    vendor: ['react', 'history', 'react-dom', 'react-router-dom', 'redux', 'react-redux', 'redux-thunk', 'isomorphic-fetch'],
     bundle: './src/index.js'
   },
   output: {
     filename: '[hash:5].[name].js',
     path: path.resolve('./dist'),
-    publicPath: '/dist/',
+    publicPath: '//dn-abcdea.qbox.me/dist/',
     chunkFilename: '[chunkhash:5].[name].chunk.js'
   },
   module: {
@@ -23,7 +23,8 @@ module.exports = {
         exclude: /node_modules/,
         loader: 'babel-loader',
         options: {
-          presets:  ['react', 'env']
+          presets:  ['react', 'env', 'latest'],
+          plugins: ['transform-runtime']
         }
       },
       {
@@ -31,7 +32,15 @@ module.exports = {
         exclude: /node_modules/,
         loader: ExtractTextPlugin.extract({
           fallback: 'style-loader',
-          use: ['css-loader?minimize&modules&localIdentName=[name]--[local]--[hash:base64:5]', 'less-loader']
+          use: [
+            {
+              loader: 'css-loader?modules&localIdentName=[name]--[local]--[hash:base64:5]'
+            },
+            {
+              loader: 'less-loader',
+              options: lessConfig
+            }
+          ]
         })
       },
       {
@@ -80,7 +89,7 @@ module.exports = {
         }
     }),
     new webpack.optimize.CommonsChunkPlugin({
-      name: 'vendor',
+      name: 'common',
       minChunks: Infinity
     })
   ]

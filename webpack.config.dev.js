@@ -1,6 +1,7 @@
 const webpack = require('webpack')
 const path = require('path')
 const config = require('./config')
+const lessConfig = require('./less.config')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const publicPath = 'http://localhost:' + config.port + '/'
@@ -20,7 +21,8 @@ module.exports = {
         exclude: /node_modules/,
         loader: 'babel-loader',
         options: {
-          presets:  ['react', 'env']
+          presets:  ['react', 'env', 'latest'],
+          plugins: ['transform-runtime']
         }
       },
       {
@@ -28,7 +30,15 @@ module.exports = {
         exclude: /node_modules/,
         loader: ExtractTextPlugin.extract({
           fallback: 'style-loader',
-          use: ['css-loader?modules&localIdentName=[name]--[local]--[hash:base64:5]', 'less-loader']
+          use: [
+            {
+              loader: 'css-loader?modules&localIdentName=[name]--[local]--[hash:base64:5]'
+            },
+            {
+              loader: 'less-loader',
+              options: lessConfig
+            }
+          ]
         })
       },
       {

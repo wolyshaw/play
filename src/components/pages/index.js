@@ -1,23 +1,22 @@
-import React, { PureComponent } from 'react'
+import React, { Component } from 'react'
 import { Route, Switch } from 'react-router-dom'
 import Bundle from '../elements/Bundle'
 const HomeLazy = require('bundle-loader?lazy&name=Home!components/pages/Home')
-
-const NotFind = props => {
-  return (
-    <div>
-      当前页面未找到
-    </div>
-  )
-}
+const NotFundLazy = require('bundle-loader?lazy&name=NotFund!components/pages/NotFund')
 
 const Home = props => (
-  <Bundle load={ HomeLazy } title={ 'Home' }>
+  <Bundle load={ HomeLazy }>
     { (Container) => <Container { ...props }/> }
   </Bundle>
 )
 
-export default class Pages extends PureComponent {
+const NotFund = props => (
+  <Bundle load={ NotFundLazy }>
+    { (Container) => <Container { ...props }/> }
+  </Bundle>
+)
+
+export default class Pages extends Component {
   constructor(props) {
     super(...props)
   }
@@ -26,7 +25,7 @@ export default class Pages extends PureComponent {
     return (
       <Switch>
         <Route exact path='/' component={ Home }/>
-        <Route component={ NotFind }/>
+        <Route component={ NotFund }/>
       </Switch>
     )
   }
