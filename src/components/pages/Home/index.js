@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react'
-import { Fetch } from 'util'
-import Article from 'components/elements/Article'
+import { Fetch } from '@/utils'
+import Article from '@/components/elements/Article'
 
 export default class Home extends PureComponent {
   constructor(props) {
@@ -15,16 +15,13 @@ export default class Home extends PureComponent {
   }
 
   componentDidMount() {
-    Fetch('/front/article/list')
-      .then(r => this.setState({ list: r.list.rows }))
+    Fetch('/article/list')
+      .then(r => this.setState({ list: r.data.rows }))
   }
-
 
   render() {
     return (
-      <div>
-        { <Article rows={this.state.list}/> }
-      </div>
+      this.state.list ? <Article rows={this.state.list}/> : null
     )
   }
 }

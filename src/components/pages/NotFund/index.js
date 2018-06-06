@@ -1,11 +1,14 @@
 import React, { PureComponent } from 'react'
+import propTypes from 'prop-types'
 
 export default class NotFund extends PureComponent {
-  constructor(props) {
-    super(...props)
+
+  static propTypes = {
+    staticContext: propTypes.object
   }
 
-  componentWillMount() {
+  constructor(props) {
+    super(...props)
     const { staticContext } = this.props
     if (staticContext) {
       staticContext.status = 404

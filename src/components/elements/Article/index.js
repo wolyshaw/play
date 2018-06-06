@@ -1,10 +1,12 @@
 import React, { PureComponent } from 'react'
+import propTypes from 'prop-types'
 import Item from './item'
 import styles from './list.less'
 
 export default class Article extends PureComponent {
-  constructor(props) {
-    super(...props)
+
+  static propTypes = {
+    rows: propTypes.array
   }
 
   render() {

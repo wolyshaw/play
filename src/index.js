@@ -1,16 +1,15 @@
-import React, { PureComponent } from 'react'
+import React from 'react'
 import { render } from 'react-dom'
 import { Provider } from 'react-redux'
 import { BrowserRouter as Router } from 'react-router-dom'
-import Application from 'components'
-import { appStore } from 'util/store'
+import Application from '@/components'
+import { appStore } from '@/utils/store'
 
 render(
   <Provider store={ appStore(window.__INITIAL_STATE__) }>
     <Router>
       <Application/>
     </Router>
-  </Provider>
-,
+  </Provider>,
   document.getElementById('app')
 )

@@ -1,10 +1,12 @@
 import React, { PureComponent } from 'react'
+import propTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 import styles from './item.less'
 
 export default class Item extends PureComponent {
-  constructor(props) {
-    super(...props)
+
+  static propTypes = {
+    row: propTypes.object
   }
 
   render() {

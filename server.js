@@ -1,35 +1,62 @@
-const express = require('express')
 const path = require('path')
-const compression = require('compression')
-const app = express()
-const webpack = require('webpack')
-const proxy = require('http-proxy-middleware')
-const webpackDevMiddleware = require('webpack-dev-middleware')
-const webpackHotMiddleware = require('webpack-hot-middleware')
-const webpackDevConfig = require('./webpack.config.dev')
-const config = require('./config')
-const NODE_ENV = process.env.NODE_ENV === 'production'
-const compiler = webpack(webpackDevConfig)
-app.use(compression())
-app.use(webpackDevMiddleware(compiler, {
-  publicPath: webpackDevConfig.output.publicPath,
-  noInfo: true,
-  stats: {
-    colors: true
-  }
-}))
+const signale = require('signale')
+const express = require('express')
 
-app.use(webpackHotMiddleware(compiler))
-let buildDir = 'dist'
-if (config.debug) {
-  buildDir = 'dev'
+const env = process.env.NODE_ENV || 'development'
+const config = require('./config')
+
+const app = express()
+const { port, staticDirName } = config[env]
+
+app.use(`/${staticDirName}`, express.static(`./${staticDirName}`))
+
+if(env === 'development') {
+  const proxy = require('http-proxy-middleware')
+  const webpack = require('webpack')
+  const devServer = require('webpack-dev-middleware')
+  const hotServer = require('webpack-hot-middleware')
+  const devConfig = require('./scripts/webpack/webpack.config.dev')
+  const compiler = webpack(devConfig)
+  const instance = devServer(compiler, {
+    publicPath: devConfig.output.publicPath,
+    serverSideRender: true,
+    writeToDisk: path => /\.html$/.test(path),
+    stats: {
+      colors: true,
+      chunks: false,
+      chunkModules: false,
+      children: false,
+      modules: false,
+      version: false
+    }
+  })
+  const filter = (pathname, req) => req.method === 'POST'
+  app.use(proxy(filter, {target: config[env].apiHost, changeOrigin: true, secure: false}))
+  app.use(hotServer(compiler))
+  app.use(instance)
+  // instance.waitUntilValid(() => {
+  //   console.log(chalk.green(`successfully, online in http://localhost:${port}`))
+  // })
+} else if(env === 'production') {
+  const proxy = require('http-proxy-middleware')
+  const filter = (pathname, req) => req.method === 'POST'
+  app.use(proxy(filter, {target: config[env].apiHost, changeOrigin: true, secure: false}))
+} else if(env === 'ssr') {
+  const proxy = require('http-proxy-middleware')
+  const filter = (pathname, req) => req.method === 'POST'
+  app.use(proxy(filter, {target: config[env].apiHost, changeOrigin: true, secure: false}))
 }
-app.use('/api', proxy({target: 'http://localhost:4000', changeOrigin: true}))
-app.use('/dist', express.static(buildDir))
-app.get('*', function(req, res) {
-  res.sendFile(path.join(__dirname, buildDir, 'index.html'))
-})
-var PORT = process.env.PORT || config.port
-app.listen(PORT, function() {
-  console.log('Production Express server running at localhost:' + PORT)
+
+if(env === 'ssr') {
+  const render = require('./dist/render')
+  app.get('*', render.default)
+} else {
+  app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, staticDirName, 'index.html'))
+  })
+}
+
+app.listen(port, (err) => {
+  if(err) throw err
+  signale.success(`successfully, online in http://localhost:${port}`)
 })

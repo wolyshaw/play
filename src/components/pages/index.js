@@ -1,20 +1,20 @@
 import React, { Component } from 'react'
 import { Route, Switch } from 'react-router-dom'
-import Bundle from '../elements/Bundle'
-const HomeLazy = require('bundle-loader?lazy&name=Home!components/pages/Home')
-const NotFundLazy = require('bundle-loader?lazy&name=NotFund!components/pages/NotFund')
+import Loadable from 'react-loadable'
 
-const Home = props => (
-  <Bundle load={ HomeLazy }>
-    { (Container) => <Container { ...props }/> }
-  </Bundle>
+const Loading = () => (
+  <div>loading...</div>
 )
 
-const NotFund = props => (
-  <Bundle load={ NotFundLazy }>
-    { (Container) => <Container { ...props }/> }
-  </Bundle>
-)
+const Home = Loadable({
+  loader: () => import('@/components/pages/Home'),
+  loading: Loading,
+})
+
+const NotFund = Loadable({
+  loader: () => import('@/components/pages/NotFund'),
+  loading: Loading,
+})
 
 export default class Pages extends Component {
   constructor(props) {
